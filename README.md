@@ -1,5 +1,5 @@
-# linkedlist-y-arboles
-Práctica de clases autorreferenciadas
+# LinkedList y Árboles
+Práctica de clases autorreferenciadas. Se creó una ventana administradora para la demostración de cada estructura
 
 * Se crea una clase Lista Ligada con nodos con referencias al siguiente
 * Luego, se hace una herencia para las Listas Doblemente Ligadas, en las cuales cada nodo también tiene una referencia al anterior
