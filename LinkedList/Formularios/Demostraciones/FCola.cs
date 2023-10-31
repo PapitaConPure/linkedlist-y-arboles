@@ -22,6 +22,7 @@ namespace LinkedList {
 			this.InitializeComponent();
 			this.cola = cola;
 			this.fElemento = new FElemento();
+			this.ActualizarListBox();
 		}
 
 		private void FCola_FormClosed(object sender, FormClosedEventArgs e) {

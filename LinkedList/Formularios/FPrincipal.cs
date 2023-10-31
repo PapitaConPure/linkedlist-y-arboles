@@ -80,6 +80,12 @@ namespace LinkedList {
 			fCola.ShowDialog();
 			fCola.Dispose();
 		}
+
+		private void gbArbolBinario_Click(object sender, EventArgs e) {
+			FÁrbol fÁrbol = new FÁrbol(this.sistema.ÁrbolBinario);
+			fÁrbol.ShowDialog();
+			fÁrbol.Dispose();
+		}
 		#endregion
 
 		private void BtnSalir_Click(object sender, EventArgs e) {

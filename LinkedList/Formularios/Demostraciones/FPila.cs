@@ -22,6 +22,7 @@ namespace LinkedList {
 			this.InitializeComponent();
 			this.pila = pila;
 			this.fElemento = new FElemento();
+			this.ActualizarListBox();
 		}
 
 		private void FPila_FormClosed(object sender, FormClosedEventArgs e) {

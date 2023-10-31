@@ -12,12 +12,14 @@ namespace LinkedList {
 		public ListaDoblementeLigada ListaDoblementeLigada;
 		public Pila Pila;
 		public Cola Cola;
+		public ÁrbolBinario ÁrbolBinario;
 
 		public Sistema() {
 			this.ListaLigada = new ListaLigada();
 			this.ListaDoblementeLigada = new ListaDoblementeLigada();
 			this.Pila = new Pila();
 			this.Cola = new Cola();
+			this.ÁrbolBinario = new ÁrbolBinario();
 		}
 	}
 }

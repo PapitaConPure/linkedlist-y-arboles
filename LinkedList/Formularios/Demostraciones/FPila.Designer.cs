@@ -46,7 +46,7 @@ namespace LinkedList {
 			this.tlpBotones.Controls.Add(this.btnLimpiar, 0, 3);
 			this.tlpBotones.Controls.Add(this.btnContiene, 0, 4);
 			this.tlpBotones.Dock = System.Windows.Forms.DockStyle.Left;
-			this.tlpBotones.Location = new System.Drawing.Point(10, 10);
+			this.tlpBotones.Location = new System.Drawing.Point(12, 12);
 			this.tlpBotones.Name = "tlpBotones";
 			this.tlpBotones.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
 			this.tlpBotones.RowCount = 5;
@@ -61,7 +61,7 @@ namespace LinkedList {
 			this.tlpBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tlpBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tlpBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tlpBotones.Size = new System.Drawing.Size(157, 261);
+			this.tlpBotones.Size = new System.Drawing.Size(157, 257);
 			this.tlpBotones.TabIndex = 0;
 			// 
 			// btnApilar
@@ -69,18 +69,18 @@ namespace LinkedList {
 			this.btnApilar.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnApilar.Location = new System.Drawing.Point(3, 3);
 			this.btnApilar.Name = "btnApilar";
-			this.btnApilar.Size = new System.Drawing.Size(148, 46);
+			this.btnApilar.Size = new System.Drawing.Size(148, 45);
 			this.btnApilar.TabIndex = 0;
-			this.btnApilar.Text = "Apilar";
+			this.btnApilar.Text = "Apilar (...)";
 			this.btnApilar.UseVisualStyleBackColor = true;
 			this.btnApilar.Click += new System.EventHandler(this.BtnApilar_Click);
 			// 
 			// btnRevisar
 			// 
 			this.btnRevisar.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnRevisar.Location = new System.Drawing.Point(3, 107);
+			this.btnRevisar.Location = new System.Drawing.Point(3, 105);
 			this.btnRevisar.Name = "btnRevisar";
-			this.btnRevisar.Size = new System.Drawing.Size(148, 46);
+			this.btnRevisar.Size = new System.Drawing.Size(148, 45);
 			this.btnRevisar.TabIndex = 2;
 			this.btnRevisar.Text = "Revisar (#)";
 			this.btnRevisar.UseVisualStyleBackColor = true;
@@ -89,9 +89,9 @@ namespace LinkedList {
 			// btnDesapilar
 			// 
 			this.btnDesapilar.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnDesapilar.Location = new System.Drawing.Point(3, 55);
+			this.btnDesapilar.Location = new System.Drawing.Point(3, 54);
 			this.btnDesapilar.Name = "btnDesapilar";
-			this.btnDesapilar.Size = new System.Drawing.Size(148, 46);
+			this.btnDesapilar.Size = new System.Drawing.Size(148, 45);
 			this.btnDesapilar.TabIndex = 1;
 			this.btnDesapilar.Text = "Desapilar (#)";
 			this.btnDesapilar.UseVisualStyleBackColor = true;
@@ -100,9 +100,9 @@ namespace LinkedList {
 			// btnLimpiar
 			// 
 			this.btnLimpiar.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnLimpiar.Location = new System.Drawing.Point(3, 159);
+			this.btnLimpiar.Location = new System.Drawing.Point(3, 156);
 			this.btnLimpiar.Name = "btnLimpiar";
-			this.btnLimpiar.Size = new System.Drawing.Size(148, 46);
+			this.btnLimpiar.Size = new System.Drawing.Size(148, 45);
 			this.btnLimpiar.TabIndex = 3;
 			this.btnLimpiar.Text = "Limpiar";
 			this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@ namespace LinkedList {
 			// btnContiene
 			// 
 			this.btnContiene.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnContiene.Location = new System.Drawing.Point(3, 211);
+			this.btnContiene.Location = new System.Drawing.Point(3, 207);
 			this.btnContiene.Name = "btnContiene";
 			this.btnContiene.Size = new System.Drawing.Size(148, 47);
 			this.btnContiene.TabIndex = 4;
@@ -123,9 +123,9 @@ namespace LinkedList {
 			// 
 			this.gbElementos.Controls.Add(this.lsbElementos);
 			this.gbElementos.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gbElementos.Location = new System.Drawing.Point(167, 10);
+			this.gbElementos.Location = new System.Drawing.Point(169, 12);
 			this.gbElementos.Name = "gbElementos";
-			this.gbElementos.Size = new System.Drawing.Size(327, 261);
+			this.gbElementos.Size = new System.Drawing.Size(323, 257);
 			this.gbElementos.TabIndex = 1;
 			this.gbElementos.TabStop = false;
 			this.gbElementos.Text = "Los botones con (#) usan el primer elemento";
@@ -139,7 +139,7 @@ namespace LinkedList {
 			this.lsbElementos.Name = "lsbElementos";
 			this.lsbElementos.ScrollAlwaysVisible = true;
 			this.lsbElementos.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.lsbElementos.Size = new System.Drawing.Size(321, 242);
+			this.lsbElementos.Size = new System.Drawing.Size(317, 238);
 			this.lsbElementos.TabIndex = 0;
 			// 
 			// FPila
@@ -151,7 +151,7 @@ namespace LinkedList {
 			this.Controls.Add(this.tlpBotones);
 			this.MinimumSize = new System.Drawing.Size(442, 240);
 			this.Name = "FPila";
-			this.Padding = new System.Windows.Forms.Padding(10);
+			this.Padding = new System.Windows.Forms.Padding(12);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Demostración de Pila con Lista Ligada";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FPila_FormClosed);
