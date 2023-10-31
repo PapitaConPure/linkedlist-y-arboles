@@ -46,8 +46,10 @@
     <Compile Include="ListaLigada.cs" />
     <Compile Include="NodoListaLigada.cs" />
     <Compile Include="NodoListaDoblementeLigada.cs" />
+    <Compile Include="NodoÁrbolBinario.cs" />
     <Compile Include="Pila.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ÁrbolBinario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
