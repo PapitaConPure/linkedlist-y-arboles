@@ -276,11 +276,10 @@ namespace Estructuras {
 		/// <param name="índiceInicio">La posición basada en 0 del primer elemento a copiar</param>
 		/// <param name="cantidad">Cantidad de elementos a copiar</param>
 		/// <returns>Un nuevo vector con los elementos de esta <see cref="ListaLigada"/></returns>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public object[] AVector(int índiceInicio = 0, int cantidad = -1) {
 			if(this.Vacía)
 				return new object[0];
-
-			new List<object>().ToArray();
 
 			if(cantidad == -1)
 				cantidad = this.Cantidad - índiceInicio;
@@ -303,6 +302,42 @@ namespace Estructuras {
 			}
 
 			return vector;
+		}
+
+		/// <summary>
+		/// Copia los elementos de la <see cref="ListaLigada"/> en el vector <paramref name="destino"/> indicado
+		/// </summary>
+		/// <param name="destino">El vector al cual copiar los elementos de la <see cref="ListaLigada"/></param>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar</param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		/// <exception cref="ArgumentException"></exception>
+		public void CopiarEn(object[] destino, int índiceInicio = 0, int cantidad = -1) {
+			if(this.Vacía)
+				return;
+
+			if(cantidad == -1)
+				cantidad = this.Cantidad - índiceInicio;
+
+			if(0 > índiceInicio || índiceInicio >= this.Cantidad)
+				throw new ArgumentOutOfRangeException("El índice de inicio debe estar entre 0 y la cantidad de elementos de la Lista Ligada");
+
+			cantidad -= cantidad + índiceInicio - this.Cantidad;
+
+			if(destino.Length < cantidad)
+				throw new ArgumentException("La cantidad indicada no cabe en el vector destino indicado");
+
+			int índiceFin = índiceInicio + cantidad;
+			NodoListaLigada actual = this.cabeza;
+			int idx = 0;
+
+			while(actual is NodoListaLigada && idx < índiceFin) {
+				if(índiceInicio <= idx)
+					destino[idx - índiceInicio] = actual.Valor;
+
+				actual = actual.Siguiente;
+				idx++;
+			}
 		}
 
 		/// <summary>
