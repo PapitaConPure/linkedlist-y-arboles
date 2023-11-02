@@ -144,7 +144,7 @@ namespace LinkedList {
 			this.gbElementos.Size = new System.Drawing.Size(419, 426);
 			this.gbElementos.TabIndex = 1;
 			this.gbElementos.TabStop = false;
-			this.gbElementos.Text = "Los botones con (...) requieren ingresar datos";
+			this.gbElementos.Text = "Los números se ordenan por caracteres, no valor";
 			// 
 			// lsbElementos
 			// 

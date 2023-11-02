@@ -35,32 +35,48 @@ namespace LinkedList {
 			if(this.fElemento.ShowDialog() != DialogResult.OK)
 				return;
 
-			IComparable elemento = this.TextoUNúmero();
+			IComparable elemento = this.fElemento.Obtenido;
 			IComparable izquierdo, derecho;
 			IComparable encontrado = this.árbolBinario.Buscar(elemento, out izquierdo, out derecho);
 
 			ListaLigada líneas = new ListaLigada();
 
-			if(encontrado is object) líneas.AgregarÚltimo($"Encontrado: {encontrado}");
-			if(izquierdo is object)  líneas.AgregarÚltimo($"Izquierdo:  {izquierdo}");
-			if(derecho is object)    líneas.AgregarÚltimo($"Derecho:    {derecho}");
+			if(encontrado is object) {
+				líneas.AgregarÚltimo($"Encontrado: {encontrado}");
 
-			MessageBox.Show(string.Join("\n", líneas.AVector()));
+				if(izquierdo is object)
+					líneas.AgregarÚltimo($"Izquierdo:  {izquierdo}");
+
+				if(derecho is object)
+					líneas.AgregarÚltimo($"Derecho:    {derecho}");
+			} else {
+				líneas.AgregarÚltimo("Sin resultados.");
+			}
+
+			string mensaje = string.Join("\n", líneas.AVector());
+			MessageBox.Show(mensaje, "Búsqueda realizada", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void BtnContiene_Click(object sender, EventArgs e) {
 			if(this.fElemento.ShowDialog() != DialogResult.OK)
 				return;
 
-			IComparable elemento = this.TextoUNúmero();
-			this.árbolBinario.Contiene(elemento);
+			IComparable elemento = this.fElemento.Obtenido;
+			string mensaje;
+
+			if(this.árbolBinario.Contiene(elemento))
+				mensaje = "El elemento existe";
+			else
+				mensaje = "El elemento NO existe";
+
+			MessageBox.Show(mensaje, "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void BtnAgregar_Click(object sender, EventArgs e) {
 			if(this.fElemento.ShowDialog() != DialogResult.OK)
 				return;
 
-			IComparable elemento = this.TextoUNúmero();
+			IComparable elemento = this.fElemento.Obtenido;
 			this.árbolBinario.Agregar(elemento);
 
 			this.ActualizarListBoxYVisualizador();
@@ -70,7 +86,7 @@ namespace LinkedList {
 			if(this.fElemento.ShowDialog() != DialogResult.OK)
 				return;
 
-			IComparable elemento = this.TextoUNúmero();
+			IComparable elemento = this.fElemento.Obtenido;
 			bool quitado = this.árbolBinario.Quitar(elemento);
 
 			if(quitado)
@@ -79,14 +95,6 @@ namespace LinkedList {
 				MessageBox.Show($"No se encontró: {elemento}", "Elemento no quitado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			this.ActualizarListBoxYVisualizador();
-		}
-
-		private IComparable TextoUNúmero() {
-			decimal num;
-			IComparable elemento = this.fElemento.Obtenido;
-			if(decimal.TryParse(elemento as string, out num))
-				elemento = num;
-			return elemento;
 		}
 
 		private void BtnLimpiar_Click(object sender, EventArgs e) {

@@ -42,6 +42,9 @@ namespace Estructuras {
 
 			izquierdo = derecho = null;
 
+			if(encontrado is null)
+				return null;
+
 			if(encontrado.Izquierdo is NodoÁrbolBinario)
 				izquierdo = encontrado.Izquierdo.Valor;
 
@@ -98,6 +101,9 @@ namespace Estructuras {
 		}
 
 		private NodoÁrbolBinario BuscarNodo(NodoÁrbolBinario nodo, IComparable valor) {
+			if(nodo is null)
+				return null;
+
 			int comparación = -1;
 			if(nodo.Valor.GetType() == valor.GetType())
 				comparación = valor.CompareTo(nodo.Valor);

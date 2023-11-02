@@ -42,14 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cola.cs" />
-    <Compile Include="ListaDoblementeLigada.cs" />
-    <Compile Include="ListaLigada.cs" />
-    <Compile Include="NodoListaLigada.cs" />
-    <Compile Include="NodoListaDoblementeLigada.cs" />
-    <Compile Include="NodoÁrbolBinario.cs" />
+    <Compile Include="Lista Ligada\ListaDoblementeLigada\ListaDoblementeLigada.cs" />
+    <Compile Include="Lista Ligada\ListaLigada.cs" />
+    <Compile Include="Lista Ligada\NodoListaLigada.cs" />
+    <Compile Include="Lista Ligada\ListaDoblementeLigada\NodoListaDoblementeLigada.cs" />
+    <Compile Include="Árbol Binario\NodoÁrbolBinario.cs" />
     <Compile Include="Pila.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ÁrbolBinario.cs" />
+    <Compile Include="Árbol Binario\ÁrbolBinario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
