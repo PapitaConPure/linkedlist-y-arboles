@@ -4,6 +4,7 @@ namespace Estructuras {
 	[Serializable]
 	public class ÁrbolBinario: IColección {
 		private NodoÁrbolBinario raíz;
+
 		public enum Orden {
 			In = 0,
 			Pre,

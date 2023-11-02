@@ -57,27 +57,5 @@ namespace Estructuras {
 				}
 			}
 		}
-
-		/// <summary>
-		/// Busca un nodo en los subárboles izquierdos y derechos. Si no lo encuentra, hace que los mismos sigan buscando
-		/// </summary>
-		/// <remarks>Si se especifica, solo se buscará hasta una cierta <paramref name="profundidad"/> de subárboles indicados</remarks>
-		/// <param name="valor">Valor a buscar en subárboles</param>
-		/// <param name="profundidad">Profundidad, desde este nodo, hasta la cual buscar en los subárboles</param>
-		/// <returns></returns>
-		public NodoÁrbolBinario Buscar(IComparable valor, int profundidad = -1) {
-			if(profundidad == 0)
-				return null;
-
-			if(profundidad > 0)
-				profundidad--;
-
-			if(valor.CompareTo(this.Valor) < 0)
-				return this.Izquierdo.Buscar(profundidad);
-			else if(valor.CompareTo(this.Valor) > 0)
-				return this.Derecho.Buscar(profundidad);
-			else
-				return this;
-		}
 	}
 }
