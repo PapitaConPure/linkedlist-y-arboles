@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Estructuras {
 	/// <summary>
@@ -76,7 +71,7 @@ namespace Estructuras {
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public object this[int idx] {
 			get {
-				return this.BuscarNodoPorÍndice(idx);
+				return this.BuscarNodoPorÍndice(idx).Valor;
 			}
 			set {
 				this.BuscarNodoPorÍndice(idx).Valor = value;
