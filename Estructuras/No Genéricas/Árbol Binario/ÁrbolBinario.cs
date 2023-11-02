@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Estructuras {
 	[Serializable]
-	public class ÁrbolBinario {
+	public class ÁrbolBinario: IColección {
 		private NodoÁrbolBinario raíz;
 		public enum Orden {
 			In = 0,
@@ -33,8 +29,17 @@ namespace Estructuras {
 
 		public int Cantidad { get; private set; }
 
-		public bool Contiene(IComparable valor) {
-			return this.BuscarNodo(this.raíz, valor) is NodoÁrbolBinario;
+		/// <summary>
+		/// Busca el <paramref name="valor"/> especificado dentro del <see cref="ÁrbolBinario"/> e indica si lo encontró
+		/// </summary>
+		/// <param name="valor">Valor a buscar</param>
+		/// <returns><see langword="true"/> si se encuentra, de lo contrario <see langword="false"/></returns>
+		/// <exception cref="ArgumentException"></exception>
+		public bool Contiene(object valor) {
+			if(valor is IComparable)
+				return this.BuscarNodo(this.raíz, valor as IComparable) is NodoÁrbolBinario;
+			else
+				throw new ArgumentException("El valor que se intenta buscar no implementa la interfaz IComparable");
 		}
 
 		public IComparable Buscar(IComparable valor, out IComparable izquierdo, out IComparable derecho) {
@@ -90,7 +95,7 @@ namespace Estructuras {
 			this.Cantidad = 0;
 		}
 
-		public IComparable[] AVector(Orden orden) {
+		public object[] AVector(Orden orden) {
 			ListaLigada lista = new ListaLigada();
 			this.RecorrerNodo(lista, this.raíz, orden);
 			this.Cantidad = lista.Cantidad;
@@ -98,6 +103,10 @@ namespace Estructuras {
 			IComparable[] vector = new IComparable[lista.Cantidad];
 			lista.CopiarEn(vector);
 			return vector;
+		}
+
+		public object[] AVector() {
+			return this.AVector(Orden.In);
 		}
 
 		private NodoÁrbolBinario BuscarNodo(NodoÁrbolBinario nodo, IComparable valor) {
@@ -194,13 +203,6 @@ namespace Estructuras {
 		private IComparable CalcularMenorValor(NodoÁrbolBinario nodo) {
 			while(nodo.Izquierdo is NodoÁrbolBinario)
 				nodo = nodo.Izquierdo;
-
-			return nodo.Valor;
-		}
-
-		private IComparable CalcularMayorValor(NodoÁrbolBinario nodo) {
-			while(nodo.Derecho is NodoÁrbolBinario)
-				nodo = nodo.Derecho;
 
 			return nodo.Valor;
 		}

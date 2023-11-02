@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Estructuras {
+namespace Estructuras.Genéricas {
 	/// <summary>
 	/// Representa una estructura de datos cuyo comportamiento es aquel de "Primero en Entrar, Primero en Salir"
 	/// </summary>

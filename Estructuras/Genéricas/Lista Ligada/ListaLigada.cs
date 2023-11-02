@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Estructuras {
+namespace Estructuras.Genéricas {
 	/// <summary>
 	/// Representa una estructura de datos secuencial de carácter de lista en la cual cada elemento hace referencia al siguiente
 	/// </summary>
