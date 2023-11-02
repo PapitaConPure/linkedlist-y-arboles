@@ -5,19 +5,16 @@ namespace Estructuras.Genéricas {
 	/// Representa una estructura de datos cuyo comportamiento es aquel de "Último en Entrar, Primero en Salir"
 	/// </summary>
 	[Serializable]
-	public class Pila {
-		private readonly ListaLigada lista;
+	public class Pila<T>: IColección<T> {
+		private readonly ListaLigada<T> lista;
 
 		/// <summary>
 		/// Crea una nueva instancia de <see cref="Pila"/> vacía
 		/// </summary>
 		public Pila() {
-			this.lista = new ListaLigada();
+			this.lista = new ListaLigada<T>();
 		}
 
-		/// <summary>
-		/// Indica la cantidad de elementos amontonados de la <see cref="Pila"/>
-		/// </summary>
 		public int Cantidad {
 			get { return this.lista.Cantidad; }
 		}
@@ -27,7 +24,7 @@ namespace Estructuras.Genéricas {
 		/// </summary>
 		/// <param name="valor">Valor a buscar en la <see cref="Pila"/></param>
 		/// <returns><see langword="true"/> si se encuentra el valor, <see langword="false"/> de lo contrario </returns>
-		public bool Contiene(object valor) {
+		public bool Contiene(T valor) {
 			return this.lista.Contiene(valor);
 		}
 
@@ -36,7 +33,7 @@ namespace Estructuras.Genéricas {
 		/// </summary>
 		/// <param name="valor">Valor a apilar</param>
 		/// <returns>El nuevo largo de la <see cref="Pila"/></returns>
-		public int Apilar(object valor) {
+		public int Apilar(T valor) {
 			this.lista.AgregarPrimero(valor);
 			return this.lista.Cantidad;
 		}
@@ -45,7 +42,7 @@ namespace Estructuras.Genéricas {
 		/// Quita y devuelve el elemento en la cima de la <see cref="Pila"/>
 		/// </summary>
 		/// <returns>El elemento quitado, o <see langword="null"/> si la <see cref="Pila"/> está vacía</returns>
-		public object Desapilar() {
+		public T Desapilar() {
 			return this.lista.QuitarPrimero();
 		}
 
@@ -53,7 +50,7 @@ namespace Estructuras.Genéricas {
 		/// Devuelve el elemento en la cima de la <see cref="Pila"/> y no lo quita
 		/// </summary>
 		/// <returns>El elemento en la cima de la <see cref="Pila"/>, o <see langword="null"/> si está vacía</returns>
-		public object Revisar() {
+		public T Revisar() {
 			return this.lista.PrimerValor;
 		}
 
@@ -69,7 +66,7 @@ namespace Estructuras.Genéricas {
 		/// </summary>
 		/// <remarks>El primer elemento del vector creado es el que más tiende a salir</remarks>
 		/// <returns>Un nuevo vector con los elementos de esta <see cref="Pila"/></returns>
-		public object[] AVector() {
+		public T[] AVector() {
 			return this.lista.AVector();
 		}
 	}
