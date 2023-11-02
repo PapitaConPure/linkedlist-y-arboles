@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Estructuras.Genéricas {
-	interface IColección<T> {
+	public interface IColección<T> {
 		/// <summary>
 		/// Indica la cantidad de elementos de la colección
 		/// </summary>

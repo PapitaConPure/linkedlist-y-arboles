@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Estructuras {
-	interface IColección {
+	public interface IColección {
 		/// <summary>
 		/// Indica la cantidad de elementos de la colección
 		/// </summary>
