@@ -15,7 +15,7 @@ namespace Estructuras {
 			this.raíz = raíz;
 		}
 
-		public ÁrbolBinario(): this(null) { }
+		public ÁrbolBinario(): this(null) {}
 
 		/// <summary>
 		/// Devuelve el <see cref="NodoÁrbolBinario"/> Raíz del <see cref="ÁrbolBinario"/>
@@ -30,12 +30,6 @@ namespace Estructuras {
 
 		public int Cantidad { get; private set; }
 
-		/// <summary>
-		/// Busca el <paramref name="valor"/> especificado dentro del <see cref="ÁrbolBinario"/> e indica si lo encontró
-		/// </summary>
-		/// <param name="valor">Valor a buscar</param>
-		/// <returns><see langword="true"/> si se encuentra, de lo contrario <see langword="false"/></returns>
-		/// <exception cref="ArgumentException"></exception>
 		public bool Contiene(object valor) {
 			if(valor is IComparable)
 				return this.BuscarNodo(this.raíz, valor as IComparable) is NodoÁrbolBinario;
