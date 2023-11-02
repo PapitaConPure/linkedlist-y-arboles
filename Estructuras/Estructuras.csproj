@@ -41,15 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cola.cs" />
-    <Compile Include="Lista Ligada\ListaDoblementeLigada\ListaDoblementeLigada.cs" />
-    <Compile Include="Lista Ligada\ListaLigada.cs" />
-    <Compile Include="Lista Ligada\NodoListaLigada.cs" />
-    <Compile Include="Lista Ligada\ListaDoblementeLigada\NodoListaDoblementeLigada.cs" />
-    <Compile Include="Árbol Binario\NodoÁrbolBinario.cs" />
-    <Compile Include="Pila.cs" />
+    <Compile Include="Genéricas\General\Cola.cs" />
+    <Compile Include="Genéricas\General\Pila.cs" />
+    <Compile Include="Genéricas\IColección.cs" />
+    <Compile Include="Genéricas\Genérico.cs" />
+    <Compile Include="Genéricas\Lista Ligada\ListaDoblementeLigada\ListaDoblementeLigada.cs" />
+    <Compile Include="Genéricas\Lista Ligada\ListaDoblementeLigada\NodoListaDoblementeLigada.cs" />
+    <Compile Include="Genéricas\Lista Ligada\ListaLigada.cs" />
+    <Compile Include="Genéricas\Lista Ligada\NodoListaLigada.cs" />
+    <Compile Include="Genéricas\Árbol Binario\NodoÁrbolBinario.cs" />
+    <Compile Include="Genéricas\Árbol Binario\ÁrbolBinario.cs" />
+    <Compile Include="No Genéricas\IColección.cs" />
+    <Compile Include="No Genéricas\General\Cola.cs" />
+    <Compile Include="No Genéricas\Lista Ligada\ListaDoblementeLigada\ListaDoblementeLigada.cs" />
+    <Compile Include="No Genéricas\Lista Ligada\ListaLigada.cs" />
+    <Compile Include="No Genéricas\Lista Ligada\NodoListaLigada.cs" />
+    <Compile Include="No Genéricas\Lista Ligada\ListaDoblementeLigada\NodoListaDoblementeLigada.cs" />
+    <Compile Include="No Genéricas\Árbol Binario\NodoÁrbolBinario.cs" />
+    <Compile Include="No Genéricas\General\Pila.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Árbol Binario\ÁrbolBinario.cs" />
+    <Compile Include="No Genéricas\Árbol Binario\ÁrbolBinario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
