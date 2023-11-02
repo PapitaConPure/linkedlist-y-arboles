@@ -313,7 +313,7 @@ namespace LinkedList {
 			this.Controls.Add(this.gbElementos);
 			this.Controls.Add(this.tlpBotones);
 			this.Controls.Add(this.pnlRecorrido);
-			this.MinimumSize = new System.Drawing.Size(640, 240);
+			this.MinimumSize = new System.Drawing.Size(640, 320);
 			this.Name = "FÁrbol";
 			this.Padding = new System.Windows.Forms.Padding(12);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
