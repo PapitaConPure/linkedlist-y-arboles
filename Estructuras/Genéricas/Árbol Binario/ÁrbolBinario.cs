@@ -2,24 +2,25 @@
 
 namespace Estructuras.Genéricas {
 	[Serializable]
-	public class ÁrbolBinario {
-		private NodoÁrbolBinario raíz;
+	public class ÁrbolBinario<T>: IColección<T> where T: IComparable, IComparable<T> {
+		private NodoÁrbolBinario<T> raíz;
+
 		public enum Orden {
 			In = 0,
 			Pre,
 			Post,
 		}
 
-		public ÁrbolBinario(NodoÁrbolBinario raíz) {
+		public ÁrbolBinario(NodoÁrbolBinario<T> raíz) {
 			this.raíz = raíz;
 		}
 
-		public ÁrbolBinario(): this(null) { }
+		public ÁrbolBinario(): this(null) {}
 
 		/// <summary>
-		/// Devuelve el <see cref="NodoÁrbolBinario"/> Raíz del <see cref="ÁrbolBinario"/>
+		/// Devuelve el <see cref="NodoÁrbolBinario{T}"/> Raíz del <see cref="ÁrbolBinario{T}"/>
 		/// </summary>
-		public NodoÁrbolBinario Raíz {
+		public NodoÁrbolBinario<T> Raíz {
 			get { return this.raíz; }
 		}
 
@@ -29,30 +30,32 @@ namespace Estructuras.Genéricas {
 
 		public int Cantidad { get; private set; }
 
-		public bool Contiene(IComparable valor) {
-			return this.BuscarNodo(this.raíz, valor) is NodoÁrbolBinario;
+		public bool Contiene(T valor) {
+			return this.BuscarNodo(this.raíz, valor) is NodoÁrbolBinario<T>;
 		}
 
-		public IComparable Buscar(IComparable valor, out IComparable izquierdo, out IComparable derecho) {
-			NodoÁrbolBinario encontrado = this.BuscarNodo(this.raíz, valor);
+		public bool Buscar(T valor, out T encontrado, out T izquierdo, out T derecho) {
+			NodoÁrbolBinario<T> nodo = this.BuscarNodo(this.raíz, valor);
 
-			izquierdo = derecho = null;
+			encontrado = izquierdo = derecho = default;
 
-			if(encontrado is null)
-				return null;
+			if(nodo is null)
+				return false;
 
-			if(encontrado.Izquierdo is NodoÁrbolBinario)
-				izquierdo = encontrado.Izquierdo.Valor;
+			encontrado = nodo.Valor;
 
-			if(encontrado.Derecho is NodoÁrbolBinario)
-				derecho = encontrado.Derecho.Valor;
+			if(nodo.Izquierdo is NodoÁrbolBinario<T>)
+				izquierdo = nodo.Izquierdo.Valor;
 
-			return encontrado.Valor;
+			if(nodo.Derecho is NodoÁrbolBinario<T>)
+				derecho = nodo.Derecho.Valor;
+
+			return true;
 		}
 
-		public void Agregar(IComparable valor) {
+		public void Agregar(T valor) {
 			if(this.Vacío) {
-				this.raíz = new NodoÁrbolBinario(valor);
+				this.raíz = new NodoÁrbolBinario<T>(valor);
 			} else {
 				this.AgregarNodo(this.raíz, valor);
 			}
@@ -60,10 +63,8 @@ namespace Estructuras.Genéricas {
 			this.Cantidad++;
 		}
 
-		public bool Quitar(IComparable valor) {
-			int comparación = -1;
-			if(this.raíz.Valor.GetType() == valor.GetType())
-				comparación = this.raíz.Valor.CompareTo(valor);
+		public bool Quitar(T valor) {
+			int comparación = this.raíz.Valor.CompareTo(valor);
 
 			if(this.Cantidad == 1 && comparación == 0) {
 				this.raíz = null;
@@ -71,14 +72,14 @@ namespace Estructuras.Genéricas {
 				return true;
 			}
 
-			NodoÁrbolBinario resultado = this.QuitarNodo(this.raíz, valor);
+			NodoÁrbolBinario<T> resultado = this.QuitarNodo(this.raíz, valor);
 
 			if(resultado is null)
 				return false;
 
 			this.raíz = resultado;
 			this.Cantidad--;
-			return resultado is NodoÁrbolBinario;
+			return resultado is NodoÁrbolBinario<T>;
 		}
 
 		public void Limpiar() {
@@ -86,23 +87,25 @@ namespace Estructuras.Genéricas {
 			this.Cantidad = 0;
 		}
 
-		public IComparable[] AVector(Orden orden) {
-			ListaLigada lista = new ListaLigada();
+		public T[] AVector(Orden orden) {
+			ListaLigada<T> lista = new ListaLigada<T>();
 			this.RecorrerNodo(lista, this.raíz, orden);
 			this.Cantidad = lista.Cantidad;
 
-			IComparable[] vector = new IComparable[lista.Cantidad];
+			T[] vector = new T[lista.Cantidad];
 			lista.CopiarEn(vector);
 			return vector;
 		}
 
-		private NodoÁrbolBinario BuscarNodo(NodoÁrbolBinario nodo, IComparable valor) {
+		public T[] AVector() {
+			return this.AVector(Orden.In);
+		}
+
+		private NodoÁrbolBinario<T> BuscarNodo(NodoÁrbolBinario<T> nodo, T valor) {
 			if(nodo is null)
 				return null;
 
-			int comparación = -1;
-			if(nodo.Valor.GetType() == valor.GetType())
-				comparación = valor.CompareTo(nodo.Valor);
+			int comparación = valor.CompareTo(nodo.Valor);
 
 			if(comparación < 0)
 				return this.BuscarNodo(nodo.Izquierdo, valor);
@@ -113,7 +116,7 @@ namespace Estructuras.Genéricas {
 			return nodo;
 		}
 
-		private void RecorrerNodo(ListaLigada lista, NodoÁrbolBinario nodo, Orden orden) {
+		private void RecorrerNodo(ListaLigada<T> lista, NodoÁrbolBinario<T> nodo, Orden orden) {
 			if(nodo is null)
 				return;
 
@@ -138,31 +141,27 @@ namespace Estructuras.Genéricas {
 			}
 		}
 
-		private void AgregarNodo(NodoÁrbolBinario nodo, IComparable valor) {
-			int comparación = -1;
-			if(nodo.Valor.GetType() == valor.GetType())
-				comparación = valor.CompareTo(nodo.Valor);
+		private void AgregarNodo(NodoÁrbolBinario<T> nodo, T valor) {
+			int comparación = valor.CompareTo(nodo.Valor);
 
 			if(comparación < 0) {
 				if(nodo.Izquierdo is null)
-					nodo.Izquierdo = new NodoÁrbolBinario(valor);
+					nodo.Izquierdo = new NodoÁrbolBinario<T>(valor);
 				else
 					this.AgregarNodo(nodo.Izquierdo, valor);
 			} else {
 				if(nodo.Derecho is null)
-					nodo.Derecho = new NodoÁrbolBinario(valor);
+					nodo.Derecho = new NodoÁrbolBinario<T>(valor);
 				else
 					this.AgregarNodo(nodo.Derecho, valor);
 			}
 		}
 
-		private NodoÁrbolBinario QuitarNodo(NodoÁrbolBinario nodo, IComparable valor) {
+		private NodoÁrbolBinario<T> QuitarNodo(NodoÁrbolBinario<T> nodo, T valor) {
 			if(nodo is null)
 				return null;
 
-			int comparación = -1;
-			if(nodo.Valor.GetType() == valor.GetType())
-				comparación = valor.CompareTo(nodo.Valor);
+			int comparación = valor.CompareTo(nodo.Valor);
 
 			if(comparación < 0) {
 				nodo.Izquierdo = this.QuitarNodo(nodo.Izquierdo, valor);
@@ -180,15 +179,15 @@ namespace Estructuras.Genéricas {
 			if(nodo.Derecho is null)
 				return nodo.Izquierdo;
 
-			IComparable nuevoValor = this.CalcularMenorValor(nodo.Derecho);
+			T nuevoValor = this.CalcularMenorValor(nodo.Derecho);
 			nodo.Valor = nuevoValor;
 			nodo.Derecho = this.QuitarNodo(nodo.Derecho, nuevoValor);
 
 			return nodo;
 		}
 
-		private IComparable CalcularMenorValor(NodoÁrbolBinario nodo) {
-			while(nodo.Izquierdo is NodoÁrbolBinario)
+		private T CalcularMenorValor(NodoÁrbolBinario<T> nodo) {
+			while(nodo.Izquierdo is NodoÁrbolBinario<T>)
 				nodo = nodo.Izquierdo;
 
 			return nodo.Valor;
