@@ -1,5 +1,4 @@
-﻿using Estructuras;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,18 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Estructuras.Genéricas;
 
 namespace LinkedList {
 	public partial class FÁrbol: Form {
-		private readonly ÁrbolBinario árbolBinario;
+		private readonly ÁrbolBinario<string> árbolBinario;
 		private readonly FElemento fElemento;
-		NodoÁrbolBinario mostrado;
+		NodoÁrbolBinario<string> mostrado;
 
 		public FÁrbol() {
 			this.InitializeComponent();
 		}
 
-		public FÁrbol(ÁrbolBinario árbolBinario) {
+		public FÁrbol(ÁrbolBinario<string> árbolBinario) {
 			this.InitializeComponent();
 			this.árbolBinario = árbolBinario;
 			this.fElemento = new FElemento();
@@ -35,13 +35,13 @@ namespace LinkedList {
 			if(this.fElemento.ShowDialog() != DialogResult.OK)
 				return;
 
-			IComparable elemento = this.fElemento.Obtenido;
-			IComparable izquierdo, derecho;
-			IComparable encontrado = this.árbolBinario.Buscar(elemento, out izquierdo, out derecho);
+			string elemento = this.fElemento.Obtenido;
+			string encontrado, izquierdo, derecho;
+			bool encontró = this.árbolBinario.Buscar(elemento, out encontrado, out izquierdo, out derecho);
 
-			ListaLigada líneas = new ListaLigada();
+			ListaLigada<string> líneas = new ListaLigada<string>();
 
-			if(encontrado is object) {
+			if(encontró) {
 				líneas.AgregarÚltimo($"Encontrado: {encontrado}");
 
 				if(izquierdo is object)
@@ -61,7 +61,7 @@ namespace LinkedList {
 			if(this.fElemento.ShowDialog() != DialogResult.OK)
 				return;
 
-			IComparable elemento = this.fElemento.Obtenido;
+			string elemento = this.fElemento.Obtenido;
 			string mensaje;
 
 			if(this.árbolBinario.Contiene(elemento))
@@ -76,7 +76,7 @@ namespace LinkedList {
 			if(this.fElemento.ShowDialog() != DialogResult.OK)
 				return;
 
-			IComparable elemento = this.fElemento.Obtenido;
+			string elemento = this.fElemento.Obtenido;
 			this.árbolBinario.Agregar(elemento);
 
 			this.ActualizarListBoxYVisualizador();
@@ -86,7 +86,7 @@ namespace LinkedList {
 			if(this.fElemento.ShowDialog() != DialogResult.OK)
 				return;
 
-			IComparable elemento = this.fElemento.Obtenido;
+			string elemento = this.fElemento.Obtenido;
 			bool quitado = this.árbolBinario.Quitar(elemento);
 
 			if(quitado)
@@ -120,14 +120,14 @@ namespace LinkedList {
 		}
 
 		private void BtnSubnodoIzquierdo_Click(object sender, EventArgs e) {
-			if(this.mostrado is NodoÁrbolBinario && this.mostrado.Izquierdo is NodoÁrbolBinario)
+			if(this.mostrado is object && this.mostrado.Izquierdo is object)
 				this.mostrado = this.mostrado.Izquierdo;
 
 			this.ActualizarVistaÁrbol();
 		}
 
 		private void BtnSubnodoDerecho_Click(object sender, EventArgs e) {
-			if(this.mostrado is NodoÁrbolBinario && this.mostrado.Derecho is NodoÁrbolBinario)
+			if(this.mostrado is object && this.mostrado.Derecho is object)
 				this.mostrado = this.mostrado.Derecho;
 
 			this.ActualizarVistaÁrbol();
@@ -137,7 +137,7 @@ namespace LinkedList {
 			this.lsbElementos.Items.Clear();
 			int c = 0;
 
-			foreach(object elemento in this.árbolBinario.AVector(ÁrbolBinario.Orden.In))
+			foreach(object elemento in this.árbolBinario.AVector(ÁrbolBinario<string>.Orden.In))
 				this.lsbElementos.Items.Add($"[{c++}] {elemento}");
 
 			this.mostrado = this.árbolBinario.Raíz;
@@ -147,7 +147,7 @@ namespace LinkedList {
 		private void ActualizarVistaÁrbol() {
 			this.MostrarNodo(this.tbNodoRaíz, this.árbolBinario.Raíz);
 			this.MostrarNodo(this.tbNodoActual, this.mostrado);
-			if(this.mostrado is NodoÁrbolBinario) {
+			if(this.mostrado is object) {
 				this.MostrarNodo(this.tbSubnodoIzquierdo, this.mostrado.Izquierdo);
 				this.MostrarNodo(this.tbSubnodoDerecho, this.mostrado.Derecho);
 			} else {
@@ -156,8 +156,8 @@ namespace LinkedList {
 			}
 		}
 
-		private void MostrarNodo(TextBox tbNodo, NodoÁrbolBinario nodo) {
-			if(nodo is NodoÁrbolBinario && nodo.Valor is object)
+		private void MostrarNodo(TextBox tbNodo, NodoÁrbolBinario<string> nodo) {
+			if(nodo is object && nodo.Valor is object)
 				tbNodo.Text = nodo.Valor.ToString();
 			else
 				tbNodo.Text = "";

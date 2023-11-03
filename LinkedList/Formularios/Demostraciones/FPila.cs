@@ -7,18 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Estructuras;
+using Estructuras.Genéricas;
 
 namespace LinkedList {
 	public partial class FPila: Form {
-		private readonly Pila pila;
+		private readonly Pila<string> pila;
 		private readonly FElemento fElemento;
 
 		public FPila() {
 			this.InitializeComponent();
 		}
 
-		public FPila(Pila pila) {
+		public FPila(Pila<string> pila) {
 			this.InitializeComponent();
 			this.pila = pila;
 			this.fElemento = new FElemento();

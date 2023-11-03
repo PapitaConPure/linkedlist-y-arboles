@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Estructuras;
+using Estructuras.Genéricas;
 
 namespace LinkedList {
 	[Serializable]
 	class Sistema {
-		public ListaLigada ListaLigada;
-		public ListaDoblementeLigada ListaDoblementeLigada;
-		public Pila Pila;
-		public Cola Cola;
-		public ÁrbolBinario ÁrbolBinario;
+		public ListaLigada<string> ListaLigada;
+		public ListaDoblementeLigada<string> ListaDoblementeLigada;
+		public Pila<string> Pila;
+		public Cola<string> Cola;
+		public ÁrbolBinario<string> ÁrbolBinario;
 
 		public Sistema() {
-			this.ListaLigada = new ListaLigada();
-			this.ListaDoblementeLigada = new ListaDoblementeLigada();
-			this.Pila = new Pila();
-			this.Cola = new Cola();
-			this.ÁrbolBinario = new ÁrbolBinario();
+			this.ListaLigada = new ListaLigada<string>();
+			this.ListaDoblementeLigada = new ListaDoblementeLigada<string>();
+			this.Pila = new Pila<string>();
+			this.Cola = new Cola<string>();
+			this.ÁrbolBinario = new ÁrbolBinario<string>();
 		}
 	}
 }

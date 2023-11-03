@@ -7,18 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Estructuras;
+using Estructuras.Genéricas;
 
 namespace LinkedList {
 	public partial class FCola: Form {
-		private readonly Cola cola;
+		private readonly Cola<string> cola;
 		private readonly FElemento fElemento;
 
 		public FCola() {
 			this.InitializeComponent();
 		}
 
-		public FCola(Cola cola) {
+		public FCola(Cola<string> cola) {
 			this.InitializeComponent();
 			this.cola = cola;
 			this.fElemento = new FElemento();

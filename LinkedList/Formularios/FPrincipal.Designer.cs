@@ -113,7 +113,7 @@ namespace LinkedList {
 			this.gbArbolBinario.TabIndex = 4;
 			this.gbArbolBinario.Text = "Arbol Binario";
 			this.gbArbolBinario.UseVisualStyleBackColor = true;
-			this.gbArbolBinario.Click += new System.EventHandler(this.gbArbolBinario_Click);
+			this.gbArbolBinario.Click += new System.EventHandler(this.GbArbolBinario_Click);
 			// 
 			// btnSalir
 			// 

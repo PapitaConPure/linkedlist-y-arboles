@@ -81,7 +81,7 @@ namespace LinkedList {
 			fCola.Dispose();
 		}
 
-		private void gbArbolBinario_Click(object sender, EventArgs e) {
+		private void GbArbolBinario_Click(object sender, EventArgs e) {
 			FÁrbol fÁrbol = new FÁrbol(this.sistema.ÁrbolBinario);
 			fÁrbol.ShowDialog();
 			fÁrbol.Dispose();

@@ -8,19 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Estructuras;
+using Estructuras.Genéricas;
 
 namespace LinkedList {
 	public partial class FListaLigada: Form {
-		private readonly ListaLigada listaLigada;
+		private readonly ListaLigada<string> listaLigada;
 		private readonly FElemento fElemento;
 
 		public FListaLigada() {
 			this.InitializeComponent();
 		}
 
-		public FListaLigada(ListaLigada listaLigada) {
+		public FListaLigada(ListaLigada<string> listaLigada) {
 			this.InitializeComponent();
 			this.listaLigada = listaLigada;
+			this.listaLigada.QuitarÚltimo();
 			this.fElemento = new FElemento();
 			this.ActualizarListBox();
 		}
