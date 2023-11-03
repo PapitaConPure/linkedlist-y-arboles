@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Estructuras.Genéricas;
+using Tester;
 
 namespace LinkedList {
 	public partial class FÁrbol: Form {
@@ -23,6 +24,7 @@ namespace LinkedList {
 			this.InitializeComponent();
 			this.árbolBinario = árbolBinario;
 			this.fElemento = new FElemento();
+			//this.EjecutarPruebas();
 			this.ActualizarListBoxYVisualizador();
 			this.mostrado = this.árbolBinario.Raíz;
 		}
@@ -36,21 +38,21 @@ namespace LinkedList {
 				return;
 
 			string elemento = this.fElemento.Obtenido;
-			string encontrado, izquierdo, derecho;
-			bool encontró = this.árbolBinario.Buscar(elemento, out encontrado, out izquierdo, out derecho);
+			string izquierdo, derecho;
+			bool encontró = this.árbolBinario.Buscar(elemento, out izquierdo, out derecho);
 
 			ListaLigada<string> líneas = new ListaLigada<string>();
 
 			if(encontró) {
-				líneas.AgregarÚltimo($"Encontrado: {encontrado}");
+				líneas.Agregar($"Encontrado: {elemento}");
 
 				if(izquierdo is object)
-					líneas.AgregarÚltimo($"Izquierdo:  {izquierdo}");
+					líneas.Agregar($"Izquierdo:  {izquierdo}");
 
 				if(derecho is object)
-					líneas.AgregarÚltimo($"Derecho:    {derecho}");
+					líneas.Agregar($"Derecho:    {derecho}");
 			} else {
-				líneas.AgregarÚltimo("Sin resultados.");
+				líneas.Agregar("Sin resultados.");
 			}
 
 			string mensaje = string.Join("\n", líneas.AVector());
@@ -137,7 +139,7 @@ namespace LinkedList {
 			this.lsbElementos.Items.Clear();
 			int c = 0;
 
-			foreach(object elemento in this.árbolBinario.AVector(ÁrbolBinario<string>.Orden.In))
+			foreach(string elemento in this.árbolBinario.AVector(ÁrbolBinario<string>.Orden.In))
 				this.lsbElementos.Items.Add($"[{c++}] {elemento}");
 
 			this.mostrado = this.árbolBinario.Raíz;
@@ -161,6 +163,24 @@ namespace LinkedList {
 				tbNodo.Text = nodo.Valor.ToString();
 			else
 				tbNodo.Text = "";
+		}
+
+		private void EjecutarPruebas() {
+			this.EjecutarPrueba(100);
+			this.EjecutarPrueba(1_000);
+			this.EjecutarPrueba(10_000);
+		}
+
+		private void EjecutarPrueba(int cantidad) {
+			string[] pruebas = StringTester.GenerarTextosBasura(cantidad, 5);
+
+			StringTester.ComenzarPrueba();
+
+			foreach(string prueba in pruebas)
+				this.árbolBinario.Agregar(prueba);
+
+			long ms = StringTester.FinalizarPrueba();
+			MessageBox.Show($"Tiempo de adición: {ms}");
 		}
 	}
 }

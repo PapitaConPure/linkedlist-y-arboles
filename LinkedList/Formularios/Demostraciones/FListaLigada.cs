@@ -47,7 +47,7 @@ namespace LinkedList {
 			if(this.fElemento.ShowDialog() != DialogResult.OK)
 				return;
 
-			this.listaLigada.AgregarÚltimo(this.fElemento.Obtenido);
+			this.listaLigada.Agregar(this.fElemento.Obtenido);
 			this.ActualizarListBox();
 		}
 

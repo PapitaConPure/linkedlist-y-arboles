@@ -2,14 +2,14 @@
 
 namespace Estructuras.Genéricas {
 	/// <summary>
-	/// Representa una estructura de datos cuyo comportamiento es aquel de "Último en Entrar, Primero en Salir"
+	/// Representa una estructura de datos genérica cuyo comportamiento es aquel de "Último en Entrar, Primero en Salir"
 	/// </summary>
 	[Serializable]
 	public class Pila<T>: IColección<T> {
 		private readonly ListaLigada<T> lista;
 
 		/// <summary>
-		/// Crea una nueva instancia de <see cref="Pila"/> vacía
+		/// Crea una nueva instancia de <see cref="Pila{T}"/> vacía
 		/// </summary>
 		public Pila() {
 			this.lista = new ListaLigada<T>();
@@ -20,54 +20,66 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Indica si la <see cref="Pila"/> contiene el valor especificado
+		/// Indica si la <see cref="Pila{T}"/> contiene el valor especificado
 		/// </summary>
-		/// <param name="valor">Valor a buscar en la <see cref="Pila"/></param>
+		/// <param name="valor">Valor a buscar en la <see cref="Pila{T}"/></param>
 		/// <returns><see langword="true"/> si se encuentra el valor, <see langword="false"/> de lo contrario </returns>
 		public bool Contiene(T valor) {
 			return this.lista.Contiene(valor);
 		}
 
 		/// <summary>
-		/// Agrega un elemento a la cima de la <see cref="Pila"/>
+		/// Agrega un elemento a la cima de la <see cref="Pila{T}"/>
 		/// </summary>
 		/// <param name="valor">Valor a apilar</param>
-		/// <returns>El nuevo largo de la <see cref="Pila"/></returns>
+		/// <returns>El nuevo largo de la <see cref="Pila{T}"/></returns>
 		public int Apilar(T valor) {
 			this.lista.AgregarPrimero(valor);
 			return this.lista.Cantidad;
 		}
 
 		/// <summary>
-		/// Quita y devuelve el elemento en la cima de la <see cref="Pila"/>
+		/// Quita y devuelve el elemento en la cima de la <see cref="Pila{T}"/>
 		/// </summary>
-		/// <returns>El elemento quitado, o <see langword="null"/> si la <see cref="Pila"/> está vacía</returns>
+		/// <returns>El elemento quitado, o <see langword="null"/> si la <see cref="Pila{T}"/> está vacía</returns>
 		public T Desapilar() {
 			return this.lista.QuitarPrimero();
 		}
 
 		/// <summary>
-		/// Devuelve el elemento en la cima de la <see cref="Pila"/> y no lo quita
+		/// Devuelve el elemento en la cima de la <see cref="Pila{T}"/> y no lo quita
 		/// </summary>
-		/// <returns>El elemento en la cima de la <see cref="Pila"/>, o <see langword="null"/> si está vacía</returns>
+		/// <returns>El elemento en la cima de la <see cref="Pila{T}"/>, o <see langword="null"/> si está vacía</returns>
 		public T Revisar() {
 			return this.lista.PrimerValor;
 		}
 
 		/// <summary>
-		/// Quita todos los elementos de la <see cref="Pila"/>
+		/// Quita todos los elementos de la <see cref="Pila{T}"/>
 		/// </summary>
 		public void Limpiar() {
 			this.lista.Limpiar();
 		}
 
 		/// <summary>
-		/// Copia los elementos de la <see cref="Pila"/> en un nuevo vector
+		/// Copia los elementos de la <see cref="Pila{T}"/> en un nuevo vector
 		/// </summary>
 		/// <remarks>El primer elemento del vector creado es el que más tiende a salir</remarks>
-		/// <returns>Un nuevo vector con los elementos de esta <see cref="Pila"/></returns>
+		/// <returns>Un nuevo vector con los elementos de esta <see cref="Pila{T}"/></returns>
 		public T[] AVector() {
 			return this.lista.AVector();
+		}
+
+		/// <summary>
+		/// Copia los elementos de la <see cref="Pila{T}"/> en el vector <paramref name="destino"/> indicado
+		/// </summary>
+		/// <param name="destino">El vector al cual copiar los elementos de la <see cref="Pila{T}"/></param>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento de la <see cref="Pila{T}"/> a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar de la <see cref="Pila{T}"/></param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		/// <exception cref="ArgumentException"></exception>
+		public void CopiarEn(T[] destino, int índiceInicio = -1, int cantidad = -1) {
+			this.lista.CopiarEn(destino, índiceInicio, cantidad);
 		}
 	}
 }

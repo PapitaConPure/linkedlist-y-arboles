@@ -5,49 +5,86 @@ namespace Estructuras.Genéricas {
 	public class ÁrbolBinario<T>: IColección<T> where T: IComparable, IComparable<T> {
 		private NodoÁrbolBinario<T> raíz;
 
+		/// <summary>
+		/// Especifica el orden de recorrido recursivo de los nodos del árbol
+		/// </summary>
 		public enum Orden {
+			/// <summary>
+			/// Procesa el subárbol izquierdo, luego el valor del nodo, luego el subárbol derecho
+			/// </summary>
 			In = 0,
+			/// <summary>
+			/// Procesa el valor del nodo, luego el subárbol izquierdo, luego el subárbol derecho
+			/// </summary>
 			Pre,
+			/// <summary>
+			/// Procesa el subárbol izquierdo, luego el subárbol derecho, luego el valor del nodo
+			/// </summary>
 			Post,
 		}
 
+		/// <summary>
+		/// Crea una nueva instancia de <see cref="ÁrbolBinario{T}"/> con un <see cref="NodoÁrbolBinario{T}"/> raíz
+		/// </summary>
+		/// <param name="raíz">Nodo raíz del <see cref="ÁrbolBinario{T}"/></param>
 		public ÁrbolBinario(NodoÁrbolBinario<T> raíz) {
 			this.raíz = raíz;
 		}
 
+		/// <summary>
+		/// Inicializa una nueva instancia de <see cref="NodoÁrbolBinario{T}"/> vacía
+		/// </summary>
 		public ÁrbolBinario(): this(null) {}
 
 		/// <summary>
-		/// Devuelve el <see cref="NodoÁrbolBinario{T}"/> Raíz del <see cref="ÁrbolBinario{T}"/>
+		/// Obtiene el <see cref="NodoÁrbolBinario{T}"/> Raíz del <see cref="ÁrbolBinario{T}"/>
 		/// </summary>
 		public NodoÁrbolBinario<T> Raíz {
 			get { return this.raíz; }
 		}
 
+		/// <summary>
+		/// Determina si el <see cref="ÁrbolBinario{T}"/> está vacío (<see langword="true"/>) o no (<see langword="false"/>)
+		/// </summary>
 		public bool Vacío {
 			get { return this.raíz is null; }
 		}
 
+		/// <summary>
+		/// Indica la cantidad de elementos del <see cref="ÁrbolBinario{T}"/>
+		/// </summary>
 		public int Cantidad { get; private set; }
 
+		/// <summary>
+		/// Revisa el <see cref="ÁrbolBinario{T}"/> en busca del valor especificado e indica si se encontró o no
+		/// </summary>
+		/// <param name="valor">Valor a buscar</param>
+		/// <returns><see langword="true"/> si se encontró, o <see langword="false"/> de lo contrario</returns>
 		public bool Contiene(T valor) {
 			return this.BuscarNodo(this.raíz, valor) is NodoÁrbolBinario<T>;
 		}
 
-		public bool Buscar(T valor, out T encontrado, out T izquierdo, out T derecho) {
+		/// <summary>
+		/// Busca el <paramref name="valor"/> especificado en el <see cref="ÁrbolBinario{T}"/> y, si se encontró, 
+		/// asigna <paramref name="izquierdo"/> y <paramref name="derecho"/> a los valores inmediatos de los subárboles izquierdo y derecho respectivamente. 
+		/// </summary>
+		/// <remarks>Si el <paramref name="valor"/> buscado no se encuentra, asigna el valor por defecto de <typeparamref name="T"/> a <paramref name="izquierdo"/> y <paramref name="derecho"/></remarks>
+		/// <param name="valor">Valor a buscar</param>
+		/// <param name="izquierdo">Valor resultado del subárbol inmediato izquierdo</param>
+		/// <param name="derecho">Valor resultado del subárbol inmediato derecho</param>
+		/// <returns><see langword="true"/> si se encontró, o <see langword="false"/> de lo contrario</returns>
+		public bool Buscar(T valor, out T izquierdo, out T derecho) {
 			NodoÁrbolBinario<T> nodo = this.BuscarNodo(this.raíz, valor);
 
-			encontrado = izquierdo = derecho = default;
+			izquierdo = derecho = default;
 
 			if(nodo is null)
 				return false;
 
-			encontrado = nodo.Valor;
-
-			if(nodo.Izquierdo is NodoÁrbolBinario<T>)
+			if(nodo.Izquierdo is object)
 				izquierdo = nodo.Izquierdo.Valor;
 
-			if(nodo.Derecho is NodoÁrbolBinario<T>)
+			if(nodo.Derecho is object)
 				derecho = nodo.Derecho.Valor;
 
 			return true;
@@ -101,6 +138,18 @@ namespace Estructuras.Genéricas {
 			return this.AVector(Orden.In);
 		}
 
+		public void CopiarEn(T[] destino, Orden orden, int índiceInicio = -1, int cantidad = -1) {
+			ListaLigada<T> lista = new ListaLigada<T>();
+			this.RecorrerNodo(lista, this.raíz, orden);
+			this.Cantidad = lista.Cantidad;
+
+			lista.CopiarEn(destino, índiceInicio, cantidad);
+		}
+
+		public void CopiarEn(T[] destino, int índiceInicio = -1, int cantidad = -1) {
+			this.CopiarEn(destino, Orden.In, índiceInicio, cantidad);
+		}
+
 		private NodoÁrbolBinario<T> BuscarNodo(NodoÁrbolBinario<T> nodo, T valor) {
 			if(nodo is null)
 				return null;
@@ -122,21 +171,21 @@ namespace Estructuras.Genéricas {
 
 			switch(orden) {
 			case Orden.Pre:
-				lista.AgregarÚltimo(nodo.Valor);
+				lista.Agregar(nodo.Valor);
 				this.RecorrerNodo(lista, nodo.Izquierdo, orden);
 				this.RecorrerNodo(lista, nodo.Derecho, orden);
 				break;
 
 			case Orden.In:
 				this.RecorrerNodo(lista, nodo.Izquierdo, orden);
-				lista.AgregarÚltimo(nodo.Valor);
+				lista.Agregar(nodo.Valor);
 				this.RecorrerNodo(lista, nodo.Derecho, orden);
 				break;
 
 			case Orden.Post:
 				this.RecorrerNodo(lista, nodo.Izquierdo, orden);
 				this.RecorrerNodo(lista, nodo.Derecho, orden);
-				lista.AgregarÚltimo(nodo.Valor);
+				lista.Agregar(nodo.Valor);
 				break;
 			}
 		}

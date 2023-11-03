@@ -18,8 +18,8 @@ namespace Estructuras {
 		/// </summary>
 		public ListaDoblementeLigada(): base() {}
 
-		/// <inheritdoc cref="ListaLigada.AgregarÚltimo(object)"/>
-		public override int AgregarÚltimo(object valor) {
+		/// <inheritdoc cref="ListaLigada.Agregar(object)"/>
+		public override int Agregar(object valor) {
 			if(valor is null) return -1;
 
 			NodoListaDoblementeLigada nuevo = new NodoListaDoblementeLigada(valor, this.cola, null);
@@ -41,7 +41,7 @@ namespace Estructuras {
 			if(valor is null) return;
 
 			if(índice == this.Cantidad) {
-				this.AgregarÚltimo(valor);
+				this.Agregar(valor);
 				return;
 			}
 

@@ -5,7 +5,7 @@ namespace Estructuras {
 	/// Representa una estructura de datos secuencial de carácter de lista en la cual cada elemento hace referencia al siguiente
 	/// </summary>
 	[Serializable]
-	public class ListaLigada: IColección {
+	public class ListaLigada: IColección, ILista {
 		protected NodoListaLigada cabeza;
 		protected NodoListaLigada cola;
 
@@ -16,7 +16,7 @@ namespace Estructuras {
 		public ListaLigada(object[] valores) {
 			this.cabeza = null;
 			foreach(object valor in valores)
-				this.AgregarÚltimo(valor);
+				this.Agregar(valor);
 		}
 
 		/// <summary>
@@ -79,7 +79,7 @@ namespace Estructuras {
 		}
 
 		/// <summary>
-		/// Revisa la Lista Ligada en busca del valor especificado e indica si se encontró o no
+		/// Revisa la <see cref="ListaLigada"/> en busca del valor especificado e indica si se encontró o no
 		/// </summary>
 		/// <param name="valor">Valor a buscar</param>
 		/// <returns><see langword="true"/> si se encontró, o <see langword="false"/> de lo contrario</returns>
@@ -93,8 +93,8 @@ namespace Estructuras {
 		/// Agrega un valor a la cabeza o el principio de la <see cref="ListaLigada"/>
 		/// </summary>
 		/// <param name="valor">Valor a insertar</param>
-		/// <returns>La posición en la que se insertó el nuevo elemento, ó -1 si no se insertó nada</returns>
-		public virtual int AgregarPrimero(object valor) {
+		/// <returns>El nuevo largo de la <see cref="ListaLigada"/>, ó -1 si no se insertó nada</returns>
+		public int AgregarPrimero(object valor) {
 			if(valor is null) return -1;
 
 			NodoListaLigada nuevo = new NodoListaLigada(valor, this.cabeza);
@@ -112,7 +112,7 @@ namespace Estructuras {
 		/// </summary>
 		/// <param name="valor">Valor a insertar</param>
 		/// <returns>La posición en la que se insertó el nuevo elemento, ó -1 si no se insertó nada</returns>
-		public virtual int AgregarÚltimo(object valor) {
+		public virtual int Agregar(object valor) {
 			if(valor is null) return -1;
 
 			NodoListaLigada nuevo = new NodoListaLigada(valor);
@@ -139,7 +139,7 @@ namespace Estructuras {
 			if(valor is null) return;
 
 			if(índice == this.Cantidad) {
-				this.AgregarÚltimo(valor);
+				this.Agregar(valor);
 				return;
 			}
 
@@ -156,7 +156,7 @@ namespace Estructuras {
 
 			NodoListaLigada nuevo = new NodoListaLigada(valor, siguiente);
 
-			if(anterior is NodoListaLigada) {
+			if(anterior is object) {
 				anterior.Siguiente = nuevo;
 			} else
 				this.cabeza = nuevo;
@@ -233,6 +233,9 @@ namespace Estructuras {
 			return aQuitar.Valor;
 		}
 
+		/// <summary>
+		/// Quita todos los elementos de la <see cref="ListaLigada"/>
+		/// </summary>
 		public void Limpiar() {
 			this.cabeza = null;
 			this.cola = null;
@@ -285,7 +288,7 @@ namespace Estructuras {
 			NodoListaLigada actual = this.cabeza;
 			int idx = 0;
 
-			while(actual is NodoListaLigada && idx < índiceFin) {
+			while(actual is object && idx < índiceFin) {
 				if(índiceInicio <= idx)
 					vector[idx - índiceInicio] = actual.Valor;
 
@@ -317,13 +320,12 @@ namespace Estructuras {
 			if(this.Vacía)
 				return;
 
-			if(cantidad == -1)
-				cantidad = this.Cantidad - índiceInicio;
-
 			if(0 > índiceInicio || índiceInicio >= this.Cantidad)
 				throw new ArgumentOutOfRangeException("El índice de inicio debe estar entre 0 y la cantidad de elementos de la Lista Ligada");
 
-			cantidad -= cantidad + índiceInicio - this.Cantidad;
+			int maxCantidad = this.Cantidad - índiceInicio;
+			if(cantidad == -1 || cantidad > maxCantidad)
+				cantidad = maxCantidad;
 
 			if(destino.Length < cantidad)
 				throw new ArgumentException("La cantidad indicada no cabe en el vector destino indicado");
@@ -332,7 +334,7 @@ namespace Estructuras {
 			NodoListaLigada actual = this.cabeza;
 			int idx = 0;
 
-			while(actual is NodoListaLigada && idx < índiceFin) {
+			while(actual is object && idx < índiceFin) {
 				if(índiceInicio <= idx)
 					destino[idx - índiceInicio] = actual.Valor;
 
@@ -356,7 +358,7 @@ namespace Estructuras {
 			NodoListaLigada actual = this.cabeza;
 			int idx = 0;
 
-			while(encontrado is null && actual is NodoListaLigada) {
+			while(encontrado is null && actual is object) {
 				if(actual.Valor.Equals(valor))
 					encontrado = actual;
 				else {
@@ -384,7 +386,7 @@ namespace Estructuras {
 
 			NodoListaLigada nodo = this.cabeza;
 
-			while(índice > 0 && nodo is NodoListaLigada) {
+			while(índice > 0 && nodo is object) {
 				nodo = nodo.Siguiente;
 				índice--;
 			}
@@ -405,11 +407,11 @@ namespace Estructuras {
 				this.cabeza = aQuitar.Siguiente;
 			} else {
 				NodoListaLigada actual = this.cabeza;
-				while(actual.Siguiente is NodoListaLigada && actual.Siguiente != aQuitar) {
+				while(actual.Siguiente is object && actual.Siguiente != aQuitar) {
 					actual = actual.Siguiente;
 				}
 
-				if(actual.Siguiente is NodoListaLigada)
+				if(actual.Siguiente is object)
 					actual.Siguiente = aQuitar.Siguiente;
 			}
 

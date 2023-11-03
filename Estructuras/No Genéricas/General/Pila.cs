@@ -69,5 +69,17 @@ namespace Estructuras {
 		public object[] AVector() {
 			return this.lista.AVector();
 		}
+
+		/// <summary>
+		/// Copia los elementos de la <see cref="Pila"/> en el vector <paramref name="destino"/> indicado
+		/// </summary>
+		/// <param name="destino">El vector al cual copiar los elementos de la <see cref="Pila"/></param>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento de la <see cref="Pila"/> a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar de la <see cref="Pila"/></param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		/// <exception cref="ArgumentException"></exception>
+		public void CopiarEn(object[] destino, int índiceInicio = -1, int cantidad = -1) {
+			this.lista.CopiarEn(destino, índiceInicio, cantidad);
+		}
 	}
 }

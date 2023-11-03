@@ -85,6 +85,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sistema.cs" />
+    <Compile Include="Rendimiento\Tester.cs" />
     <EmbeddedResource Include="Formularios\Demostraciones\FCola.resx">
       <DependentUpon>FCola.cs</DependentUpon>
     </EmbeddedResource>

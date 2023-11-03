@@ -7,19 +7,19 @@ namespace Estructuras.Genéricas {
 	[Serializable]
 	public class ListaDoblementeLigada<T>: ListaLigada<T> {
 		/// <summary>
-		/// Crea una nueva instancia de <see cref="ListaDoblementeLigada"/> cuyos valores iniciales son dados por el vector facilitado
+		/// Crea una nueva instancia de <see cref="ListaDoblementeLigada{T}"/> cuyos valores iniciales son dados por el vector facilitado
 		/// </summary>
+		/// <param name="valores">Valores con los cuales inicializar la <see cref="ListaDoblementeLigada{T}"/></param>
 		/// <remarks>Los valores se ingresan en el orden que fueron recibidos, siendo el primero la cabeza o principio y el último la cola o final</remarks>
 		public ListaDoblementeLigada(T[] valores): base(valores) {}
 
-
 		/// <summary>
-		/// Crea una nueva instancia de <see cref="ListaDoblementeLigada"/> vacía
+		/// Crea una nueva instancia de <see cref="ListaDoblementeLigada{T}"/> vacía
 		/// </summary>
 		public ListaDoblementeLigada(): base() {}
 
-		/// <inheritdoc cref="ListaLigada.AgregarÚltimo(object)"/>
-		public override int AgregarÚltimo(T valor) {
+		/// <inheritdoc cref="ListaLigada{T}.Agregar(object)"/>
+		public override int Agregar(T valor) {
 			if(Genérico.EsNulo(valor))
 				return -1;
 
@@ -37,13 +37,13 @@ namespace Estructuras.Genéricas {
 			return this.Cantidad++;
 		}
 
-		/// <inheritdoc cref="ListaLigada.Insertar(int, T)"/>
+		/// <inheritdoc cref="ListaLigada{T}.Insertar(int, T)"/>
 		public override void Insertar(int índice, T valor) {
 			if(Genérico.EsNulo(valor))
 				return;
 
 			if(índice == this.Cantidad) {
-				this.AgregarÚltimo(valor);
+				this.Agregar(valor);
 				return;
 			}
 
@@ -60,7 +60,7 @@ namespace Estructuras.Genéricas {
 			this.Cantidad++;
 		}
 
-		/// <inheritdoc cref="ListaLigada.QuitarPrimero()"/>
+		/// <inheritdoc cref="ListaLigada{T}.QuitarPrimero()"/>
 		public override T QuitarPrimero() {
 			if(this.Vacía)
 				return default;
@@ -81,7 +81,7 @@ namespace Estructuras.Genéricas {
 			return quitado;
 		}
 
-		/// <inheritdoc cref="ListaLigada.QuitarÚltimo()"/>
+		/// <inheritdoc cref="ListaLigada{T}.QuitarÚltimo()"/>
 		public override T QuitarÚltimo() {
 			if(this.Vacía)
 				return default;
@@ -101,7 +101,7 @@ namespace Estructuras.Genéricas {
 			return quitado;
 		}
 
-		/// <inheritdoc cref="ListaLigada.QuitarNodoYRemediar(NodoListaLigada)"/>
+		/// <inheritdoc cref="ListaLigada{T}.QuitarNodoYRemediar(NodoListaLigada)"/>
 		protected override void QuitarNodoYRemediar(NodoListaLigada<T> aQuitar) {
 			if(this.Vacía) return;
 

@@ -34,7 +34,7 @@ namespace Estructuras {
 		/// <param name="valor">Valor a encolar</param>
 		/// <returns>El nuevo largo de la <see cref="Cola"/></returns>
 		public int Encolar(object valor) {
-			this.lista.AgregarÚltimo(valor);
+			this.lista.Agregar(valor);
 			return this.lista.Cantidad;
 		}
 
@@ -68,6 +68,18 @@ namespace Estructuras {
 		/// <returns>Un nuevo vector con los elementos de esta <see cref="Cola"/></returns>
 		public object[] AVector() {
 			return this.lista.AVector();
+		}
+
+		/// <summary>
+		/// Copia los elementos de la <see cref="Cola"/> en el vector <paramref name="destino"/> indicado
+		/// </summary>
+		/// <param name="destino">El vector al cual copiar los elementos de la <see cref="Cola"/></param>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento en la <see cref="Cola"/> a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar de la <see cref="Cola"/></param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		/// <exception cref="ArgumentException"></exception>
+		public void CopiarEn(object[] destino, int índiceInicio = -1, int cantidad = -1) {
+			this.lista.CopiarEn(destino, índiceInicio, cantidad);
 		}
 	}
 }

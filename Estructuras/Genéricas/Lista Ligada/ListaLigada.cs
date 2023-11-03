@@ -5,7 +5,7 @@ namespace Estructuras.Genéricas {
 	/// Representa una estructura de datos secuencial de carácter de lista en la cual cada elemento hace referencia al siguiente
 	/// </summary>
 	[Serializable]
-	public class ListaLigada<T>: IColección<T> {
+	public class ListaLigada<T>: IColección<T>, ILista<T> {
 		protected NodoListaLigada<T> cabeza;
 		protected NodoListaLigada<T> cola;
 
@@ -16,7 +16,7 @@ namespace Estructuras.Genéricas {
 		public ListaLigada(T[] valores) {
 			this.cabeza = null;
 			foreach(T valor in valores)
-				this.AgregarÚltimo(valor);
+				this.Agregar(valor);
 		}
 
 		/// <summary>
@@ -53,7 +53,7 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Devuelve el primer valor de la <see cref="ListaLigada{T}"/> o el valor por defecto de <see cref="T"/>
+		/// Devuelve el primer valor de la <see cref="ListaLigada{T}"/> o el valor por defecto de <typeparamref name="T"/>
 		/// </summary>
 		public T PrimerValorOPorDefecto {
 			get {
@@ -78,7 +78,7 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Devuelve el último valor de la <see cref="ListaLigada{T}"/> o el valor por defecto de <see cref="T"/>
+		/// Devuelve el último valor de la <see cref="ListaLigada{T}"/> o el valor por defecto de <typeparamref name="T"/>
 		/// </summary>
 		public T ÚltimoValorOPorDefecto {
 			get {
@@ -105,7 +105,7 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Revisa la Lista Ligada en busca del valor especificado e indica si se encontró o no
+		/// Revisa la <see cref="ListaLigada{T}"/> en busca del valor especificado e indica si se encontró o no
 		/// </summary>
 		/// <param name="valor">Valor a buscar</param>
 		/// <returns><see langword="true"/> si se encontró, o <see langword="false"/> de lo contrario</returns>
@@ -113,11 +113,11 @@ namespace Estructuras.Genéricas {
 			if(Genérico.EsNulo(valor))
 				return false;
 
-			return this.BuscarNodoPorValor(valor, out _) is NodoListaLigada;
+			return this.BuscarNodoPorValor(valor, out _) is object;
 		}
 
 		/// <summary>
-		/// Agrega un valor a la cabeza o el principio de la <see cref="ListaLigada"/>
+		/// Agrega un valor a la cabeza o el principio de la <see cref="ListaLigada{T}"/>
 		/// </summary>
 		/// <param name="valor">Valor a insertar</param>
 		/// <returns>La posición en la que se insertó el nuevo elemento, ó -1 si no se insertó nada</returns>
@@ -136,11 +136,11 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Agrega un valor a la cola o final de la <see cref="ListaLigada"/>
+		/// Agrega un valor a la cola o final de la <see cref="ListaLigada{T}"/>
 		/// </summary>
 		/// <param name="valor">Valor a insertar</param>
 		/// <returns>La posición en la que se insertó el nuevo elemento, ó -1 si no se insertó nada</returns>
-		public virtual int AgregarÚltimo(T valor) {
+		public virtual int Agregar(T valor) {
 			if(Genérico.EsNulo(valor))
 				return -1;
 
@@ -169,7 +169,7 @@ namespace Estructuras.Genéricas {
 				return;
 
 			if(índice == this.Cantidad) {
-				this.AgregarÚltimo(valor);
+				this.Agregar(valor);
 				return;
 			}
 
@@ -186,7 +186,7 @@ namespace Estructuras.Genéricas {
 
 			NodoListaLigada<T> nuevo = new NodoListaLigada<T>(valor, siguiente);
 
-			if(anterior is NodoListaLigada<T>) {
+			if(anterior is object) {
 				anterior.Siguiente = nuevo;
 			} else
 				this.cabeza = nuevo;
@@ -195,9 +195,9 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Quita el primer elemento de la <see cref="ListaLigada"/> y lo devuelve
+		/// Quita el primer elemento de la <see cref="ListaLigada{T}"/> y lo devuelve
 		/// </summary>
-		/// <returns>El valor quitado, o el valor por defecto del tipo si la <see cref="ListaLigada"/> está vacía</returns>
+		/// <returns>El valor quitado, o el valor por defecto de <typeparamref name="T"/> si la <see cref="ListaLigada{T}"/> está vacía</returns>
 		public virtual T QuitarPrimero() {
 			if(this.Vacía)
 				return default;
@@ -215,9 +215,9 @@ namespace Estructuras.Genéricas {
 
 
 		/// <summary>
-		/// Quita el último elemento de la <see cref="ListaLigada"/> y lo devuelve
+		/// Quita el último elemento de la <see cref="ListaLigada{T}"/> y lo devuelve
 		/// </summary>
-		/// <returns>El valor quitado, o el valor por defecto del tipo si la <see cref="ListaLigada"/> está vacía</returns>
+		/// <returns>El valor quitado, o el valor por defecto de <typeparamref name="T"/> si la <see cref="ListaLigada{T}"/> está vacía</returns>
 		public virtual T QuitarÚltimo() {
 			if(this.Vacía)
 				return default;
@@ -240,7 +240,7 @@ namespace Estructuras.Genéricas {
 		/// Quita la primer instancia del valor especificado y devuelve su índice, si se encuentra
 		/// </summary>
 		/// <param name="valor">Valor a quitar</param>
-		/// <returns>El índice del valor quitado de la <see cref="ListaLigada"/>, ó -1 si no se quitó nada</returns>
+		/// <returns>El índice del valor quitado de la <see cref="ListaLigada{T}"/>, ó -1 si no se quitó nada</returns>
 		public int Quitar(T valor) {
 			if(this.Vacía)
 				return -1;
@@ -255,7 +255,7 @@ namespace Estructuras.Genéricas {
 		/// Quita el elemento en el índice especificado
 		/// </summary>
 		/// <param name="índice">Índice en el cual remover un elemento</param>
-		/// <returns>El valor quitado de la <see cref="ListaLigada"/></returns>
+		/// <returns>El valor quitado de la <see cref="ListaLigada{T}"/></returns>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public T QuitarEn(int índice) {
 			NodoListaLigada<T> aQuitar = this.BuscarNodoPorÍndice(índice);
@@ -263,6 +263,9 @@ namespace Estructuras.Genéricas {
 			return aQuitar.Valor;
 		}
 
+		/// <summary>
+		/// Quita todos los elementos de la <see cref="ListaLigada{T}"/>
+		/// </summary>
 		public void Limpiar() {
 			this.cabeza = null;
 			this.cola = null;
@@ -270,7 +273,7 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Busca un elemento por índice en la <see cref="ListaLigada"/> y devuelve su valor
+		/// Busca un elemento por índice en la <see cref="ListaLigada{T}"/> y devuelve su valor
 		/// </summary>
 		/// <param name="índice">Índice deseado</param>
 		/// <returns>El valor del elemento en la posición del índice especificado</returns>
@@ -280,10 +283,10 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Busca un elemento por valor en la <see cref="ListaLigada"/> y devuelve el índice de la primer aparición
+		/// Busca un elemento por valor en la <see cref="ListaLigada{T}"/> y devuelve el índice de la primer aparición
 		/// </summary>
 		/// <param name="valor">Valor a buscar</param>
-		/// <returns>El índice de la primera instancia encontrada, o -1 si no se encuentra una</returns>
+		/// <returns>El índice de la primera instancia encontrada, ó -1 si no se encuentra una</returns>
 		public int ÍndiceDe(T valor) {
 			if(Genérico.EsNulo(valor))
 				return -1;
@@ -294,11 +297,11 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Copia los elementos del rango especificado de la <see cref="ListaLigada"/> en un nuevo vector
+		/// Copia los elementos del rango especificado de la <see cref="ListaLigada{T}"/> en un nuevo vector
 		/// </summary>
 		/// <param name="índiceInicio">La posición basada en 0 del primer elemento a copiar</param>
 		/// <param name="cantidad">Cantidad de elementos a copiar, ó -1 para copiar hasta el final</param>
-		/// <returns>Un nuevo vector con los elementos indicados de esta <see cref="ListaLigada"/></returns>
+		/// <returns>Un nuevo vector con los elementos indicados de esta <see cref="ListaLigada{T}"/></returns>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public T[] AVector(int índiceInicio, int cantidad = -1) {
 			if(this.Vacía)
@@ -316,7 +319,7 @@ namespace Estructuras.Genéricas {
 			NodoListaLigada<T> actual = this.cabeza;
 			int idx = 0;
 
-			while(actual is NodoListaLigada<T> && idx < índiceFin) {
+			while(actual is object && idx < índiceFin) {
 				if(índiceInicio <= idx)
 					vector[idx - índiceInicio] = actual.Valor;
 
@@ -330,16 +333,16 @@ namespace Estructuras.Genéricas {
 		/// <summary>
 		/// Copia los elementos de la <see cref="ListaLigada"/> en un nuevo vector
 		/// </summary>
-		/// <returns>Un nuevo vector con los elementos de esta <see cref="ListaLigada"/></returns>
+		/// <returns>Un nuevo vector con los elementos de esta <see cref="ListaLigada{T}"/></returns>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public T[] AVector() {
 			return this.AVector(0);
 		}
 
 		/// <summary>
-		/// Copia los elementos de la <see cref="ListaLigada"/> en el vector <paramref name="destino"/> indicado
+		/// Copia los elementos de la <see cref="ListaLigada{T}"/> en el vector <paramref name="destino"/> indicado
 		/// </summary>
-		/// <param name="destino">El vector al cual copiar los elementos de la <see cref="ListaLigada"/></param>
+		/// <param name="destino">El vector al cual copiar los elementos de la <see cref="ListaLigada{T}"/></param>
 		/// <param name="índiceInicio">La posición basada en 0 del primer elemento a copiar</param>
 		/// <param name="cantidad">Cantidad de elementos a copiar</param>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
@@ -348,13 +351,12 @@ namespace Estructuras.Genéricas {
 			if(this.Vacía)
 				return;
 
-			if(cantidad == -1)
-				cantidad = this.Cantidad - índiceInicio;
-
 			if(0 > índiceInicio || índiceInicio >= this.Cantidad)
 				throw new ArgumentOutOfRangeException("El índice de inicio debe estar entre 0 y la cantidad de elementos de la Lista Ligada");
 
-			cantidad -= cantidad + índiceInicio - this.Cantidad;
+			int maxCantidad = this.Cantidad - índiceInicio;
+			if(cantidad == -1 || cantidad > maxCantidad)
+				cantidad = maxCantidad;
 
 			if(destino.Length < cantidad)
 				throw new ArgumentException("La cantidad indicada no cabe en el vector destino indicado");
@@ -363,7 +365,7 @@ namespace Estructuras.Genéricas {
 			NodoListaLigada<T> actual = this.cabeza;
 			int idx = 0;
 
-			while(actual is NodoListaLigada && idx < índiceFin) {
+			while(actual is object && idx < índiceFin) {
 				if(índiceInicio <= idx)
 					destino[idx - índiceInicio] = actual.Valor;
 
@@ -373,11 +375,11 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Realiza una búsqueda secuencial por los elementos de la <see cref="ListaLigada"/> hasta encontrar un <see cref="NodoListaLigada"/> con el valor indicado
+		/// Realiza una búsqueda secuencial por los elementos de la <see cref="ListaLigada{T}"/> hasta encontrar un <see cref="NodoListaLigada{T}"/> con el valor indicado
 		/// </summary>
 		/// <param name="valor">Valor a buscar</param>
 		/// <param name="índice">Índice donde se encontró el valor por primera vez</param>
-		/// <returns>El primer <see cref="NodoListaLigada"/> coincidente, o <see langword="null"/> si no se encuentra ninguno</returns>
+		/// <returns>El primer <see cref="NodoListaLigada{T}"/> coincidente, o <see langword="null"/> si no se encuentra ninguno</returns>
 		protected NodoListaLigada<T> BuscarNodoPorValor(T valor, out int índice) {
 			índice = -1;
 
@@ -388,7 +390,7 @@ namespace Estructuras.Genéricas {
 			NodoListaLigada<T> actual = this.cabeza;
 			int idx = 0;
 
-			while(encontrado is null && actual is NodoListaLigada<T>) {
+			while(encontrado is null && actual is object) {
 				if(actual.Valor.Equals(valor))
 					encontrado = actual;
 				else {
@@ -404,11 +406,11 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Busca un <see cref="NodoListaLigada"/> por índice en la <see cref="ListaLigada"/> y lo devuelve
+		/// Busca un <see cref="NodoListaLigada{T}"/> por índice en la <see cref="ListaLigada{T}"/> y lo devuelve
 		/// </summary>
 		/// <param name="índice">Índice deseado</param>
 		/// <param name="valor">Valor que se encontró en el índice especificado</param>
-		/// <returns>El <see cref="NodoListaLigada"/> bajo el índice indicado</returns>
+		/// <returns>El <see cref="NodoListaLigada{T}"/> bajo el índice indicado</returns>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		protected NodoListaLigada<T> BuscarNodoPorÍndice(int índice) {
 			if(this.Vacía || índice < 0 || índice >= this.Cantidad)
@@ -416,7 +418,7 @@ namespace Estructuras.Genéricas {
 
 			NodoListaLigada<T> nodo = this.cabeza;
 
-			while(índice > 0 && nodo is NodoListaLigada<T>) {
+			while(índice > 0 && nodo is object) {
 				nodo = nodo.Siguiente;
 				índice--;
 			}
@@ -425,9 +427,9 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Desreferencia un <see cref="NodoListaLigada"/> y enlaza sus <see cref="NodoListaLigada"/> adyacentes adecuadamente
+		/// Desreferencia un <see cref="NodoListaLigada"/> y enlaza sus <see cref="NodoListaLigada{T}"/> adyacentes adecuadamente
 		/// </summary>
-		/// <param name="aQuitar"><see cref="NodoListaLigada"/> a quitar de la <see cref="ListaLigada"/></param>
+		/// <param name="aQuitar"><see cref="NodoListaLigada{T}"/> a quitar de la <see cref="ListaLigada{T}"/></param>
 		protected virtual void QuitarNodoYRemediar(NodoListaLigada<T> aQuitar) {
 			if(this.Vacía) return;
 
@@ -437,11 +439,11 @@ namespace Estructuras.Genéricas {
 				this.cabeza = aQuitar.Siguiente;
 			} else {
 				NodoListaLigada<T> actual = this.cabeza;
-				while(actual.Siguiente is NodoListaLigada<T> && actual.Siguiente != aQuitar) {
+				while(actual.Siguiente is object && actual.Siguiente != aQuitar) {
 					actual = actual.Siguiente;
 				}
 
-				if(actual.Siguiente is NodoListaLigada<T>)
+				if(actual.Siguiente is object)
 					actual.Siguiente = aQuitar.Siguiente;
 			}
 
