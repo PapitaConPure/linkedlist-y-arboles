@@ -34,9 +34,10 @@ namespace LinkedList {
 			this.lsbElementos = new System.Windows.Forms.ListBox();
 			this.pnlRecorrido = new System.Windows.Forms.Panel();
 			this.gbRecorrido = new System.Windows.Forms.GroupBox();
-			this.radioButton3 = new System.Windows.Forms.RadioButton();
-			this.radioButton2 = new System.Windows.Forms.RadioButton();
+			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.rbPreOrden = new System.Windows.Forms.RadioButton();
+			this.rbPostOrden = new System.Windows.Forms.RadioButton();
+			this.rbInOrden = new System.Windows.Forms.RadioButton();
 			this.tbSubnodoDerecho = new System.Windows.Forms.TextBox();
 			this.tbSubnodoIzquierdo = new System.Windows.Forms.TextBox();
 			this.tbNodoActual = new System.Windows.Forms.TextBox();
@@ -49,6 +50,7 @@ namespace LinkedList {
 			this.gbElementos.SuspendLayout();
 			this.pnlRecorrido.SuspendLayout();
 			this.gbRecorrido.SuspendLayout();
+			this.tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tlpBotones
@@ -154,6 +156,7 @@ namespace LinkedList {
 			this.lsbElementos.Location = new System.Drawing.Point(3, 16);
 			this.lsbElementos.Name = "lsbElementos";
 			this.lsbElementos.ScrollAlwaysVisible = true;
+			this.lsbElementos.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.lsbElementos.Size = new System.Drawing.Size(413, 407);
 			this.lsbElementos.TabIndex = 1;
 			// 
@@ -176,50 +179,74 @@ namespace LinkedList {
 			// 
 			// gbRecorrido
 			// 
-			this.gbRecorrido.Controls.Add(this.radioButton3);
-			this.gbRecorrido.Controls.Add(this.radioButton2);
-			this.gbRecorrido.Controls.Add(this.rbPreOrden);
+			this.gbRecorrido.Controls.Add(this.tableLayoutPanel1);
 			this.gbRecorrido.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.gbRecorrido.Location = new System.Drawing.Point(0, 338);
+			this.gbRecorrido.Location = new System.Drawing.Point(0, 356);
 			this.gbRecorrido.Name = "gbRecorrido";
-			this.gbRecorrido.Size = new System.Drawing.Size(200, 88);
+			this.gbRecorrido.Size = new System.Drawing.Size(200, 70);
 			this.gbRecorrido.TabIndex = 4;
 			this.gbRecorrido.TabStop = false;
 			this.gbRecorrido.Text = "Recorrido";
 			// 
-			// radioButton3
+			// tableLayoutPanel1
 			// 
-			this.radioButton3.AutoSize = true;
-			this.radioButton3.Location = new System.Drawing.Point(6, 65);
-			this.radioButton3.Name = "radioButton3";
-			this.radioButton3.Size = new System.Drawing.Size(75, 17);
-			this.radioButton3.TabIndex = 2;
-			this.radioButton3.TabStop = true;
-			this.radioButton3.Text = "PostOrden";
-			this.radioButton3.UseVisualStyleBackColor = true;
-			// 
-			// radioButton2
-			// 
-			this.radioButton2.AutoSize = true;
-			this.radioButton2.Checked = true;
-			this.radioButton2.Location = new System.Drawing.Point(6, 42);
-			this.radioButton2.Name = "radioButton2";
-			this.radioButton2.Size = new System.Drawing.Size(63, 17);
-			this.radioButton2.TabIndex = 1;
-			this.radioButton2.TabStop = true;
-			this.radioButton2.Text = "InOrden";
-			this.radioButton2.UseVisualStyleBackColor = true;
+			this.tableLayoutPanel1.ColumnCount = 3;
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel1.Controls.Add(this.rbPreOrden, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.rbPostOrden, 2, 0);
+			this.tableLayoutPanel1.Controls.Add(this.rbInOrden, 1, 0);
+			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+			this.tableLayoutPanel1.RowCount = 1;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(194, 51);
+			this.tableLayoutPanel1.TabIndex = 3;
 			// 
 			// rbPreOrden
 			// 
-			this.rbPreOrden.AutoSize = true;
-			this.rbPreOrden.Location = new System.Drawing.Point(6, 19);
+			this.rbPreOrden.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.rbPreOrden.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.rbPreOrden.Location = new System.Drawing.Point(3, 3);
 			this.rbPreOrden.Name = "rbPreOrden";
-			this.rbPreOrden.Size = new System.Drawing.Size(70, 17);
+			this.rbPreOrden.Size = new System.Drawing.Size(58, 45);
 			this.rbPreOrden.TabIndex = 0;
 			this.rbPreOrden.TabStop = true;
-			this.rbPreOrden.Text = "PreOrden";
+			this.rbPreOrden.Text = "Pre\r\nOrden";
+			this.rbPreOrden.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.rbPreOrden.UseVisualStyleBackColor = true;
+			this.rbPreOrden.CheckedChanged += new System.EventHandler(this.RbOrden_CheckedChanged);
+			// 
+			// rbPostOrden
+			// 
+			this.rbPostOrden.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.rbPostOrden.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.rbPostOrden.Location = new System.Drawing.Point(131, 3);
+			this.rbPostOrden.Name = "rbPostOrden";
+			this.rbPostOrden.Size = new System.Drawing.Size(60, 45);
+			this.rbPostOrden.TabIndex = 2;
+			this.rbPostOrden.TabStop = true;
+			this.rbPostOrden.Text = "Post\r\nOrden";
+			this.rbPostOrden.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.rbPostOrden.UseVisualStyleBackColor = true;
+			this.rbPostOrden.CheckedChanged += new System.EventHandler(this.RbOrden_CheckedChanged);
+			// 
+			// rbInOrden
+			// 
+			this.rbInOrden.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.rbInOrden.Checked = true;
+			this.rbInOrden.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.rbInOrden.Location = new System.Drawing.Point(67, 3);
+			this.rbInOrden.Name = "rbInOrden";
+			this.rbInOrden.Size = new System.Drawing.Size(58, 45);
+			this.rbInOrden.TabIndex = 1;
+			this.rbInOrden.TabStop = true;
+			this.rbInOrden.Text = "In\r\nOrden";
+			this.rbInOrden.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.rbInOrden.UseVisualStyleBackColor = true;
+			this.rbInOrden.CheckedChanged += new System.EventHandler(this.RbOrden_CheckedChanged);
 			// 
 			// tbSubnodoDerecho
 			// 
@@ -313,7 +340,7 @@ namespace LinkedList {
 			this.Controls.Add(this.gbElementos);
 			this.Controls.Add(this.tlpBotones);
 			this.Controls.Add(this.pnlRecorrido);
-			this.MinimumSize = new System.Drawing.Size(640, 320);
+			this.MinimumSize = new System.Drawing.Size(660, 320);
 			this.Name = "FÁrbol";
 			this.Padding = new System.Windows.Forms.Padding(12);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -324,7 +351,7 @@ namespace LinkedList {
 			this.pnlRecorrido.ResumeLayout(false);
 			this.pnlRecorrido.PerformLayout();
 			this.gbRecorrido.ResumeLayout(false);
-			this.gbRecorrido.PerformLayout();
+			this.tableLayoutPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -349,8 +376,9 @@ namespace LinkedList {
 		private System.Windows.Forms.TextBox tbNodoActual;
 		private System.Windows.Forms.TextBox tbNodoRaíz;
 		private System.Windows.Forms.GroupBox gbRecorrido;
-		private System.Windows.Forms.RadioButton radioButton3;
-		private System.Windows.Forms.RadioButton radioButton2;
+		private System.Windows.Forms.RadioButton rbPostOrden;
+		private System.Windows.Forms.RadioButton rbInOrden;
 		private System.Windows.Forms.RadioButton rbPreOrden;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 	}
 }

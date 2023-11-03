@@ -18,6 +18,22 @@ namespace Estructuras.Genéricas {
 		/// </summary>
 		public ListaDoblementeLigada(): base() {}
 
+		public override int AgregarPrimero(T valor) {
+			if(Genérico.EsNulo(valor))
+				return -1;
+
+			NodoListaLigada<T> nuevo = new NodoListaDoblementeLigada<T>(valor, this.cabeza);
+
+			if(this.Vacía)
+				this.cola = nuevo;
+			else
+				(this.cabeza as NodoListaDoblementeLigada<T>).Anterior = nuevo;
+
+			this.cabeza = nuevo;
+
+			return this.Cantidad++;
+		}
+
 		/// <inheritdoc cref="ListaLigada{T}.Agregar(object)"/>
 		public override int Agregar(T valor) {
 			if(Genérico.EsNulo(valor))
@@ -47,12 +63,12 @@ namespace Estructuras.Genéricas {
 				return;
 			}
 
-			NodoListaLigada<T> siguiente = this.BuscarNodoPorÍndice(índice);
-			NodoListaLigada<T> anterior = (siguiente as NodoListaDoblementeLigada<T>).Anterior;
-			NodoListaLigada<T> nuevo = new NodoListaLigada<T>(valor, siguiente);
-			(siguiente as NodoListaDoblementeLigada<T>).Anterior = nuevo;
+			NodoListaDoblementeLigada<T> siguiente = this.BuscarNodoPorÍndice(índice) as NodoListaDoblementeLigada<T>;
+			NodoListaLigada<T> anterior = siguiente.Anterior;
+			NodoListaLigada<T> nuevo = new NodoListaDoblementeLigada<T>(valor, anterior, siguiente);
+			siguiente.Anterior = nuevo;
 
-			if(anterior is NodoListaLigada)
+			if(anterior is object)
 				anterior.Siguiente = nuevo;
 			else
 				this.cabeza = nuevo;
@@ -109,7 +125,7 @@ namespace Estructuras.Genéricas {
 				return;
 
 			if(aQuitar == this.cabeza) {
-				if(this.cabeza.Siguiente is NodoListaLigada<T>)
+				if(this.cabeza.Siguiente is object)
 					(this.cabeza.Siguiente as NodoListaDoblementeLigada<T>).Anterior = null;
 
 				this.cabeza = this.cabeza.Siguiente;
@@ -119,16 +135,16 @@ namespace Estructuras.Genéricas {
 			} else {
 				NodoListaLigada<T> actual = this.cabeza;
 
-				while(actual.Siguiente is NodoListaLigada<T> && actual != aQuitar)
+				while(actual.Siguiente is object && actual != aQuitar)
 					actual = actual.Siguiente;
 
-				if(actual is NodoListaLigada<T>) {
+				if(actual is object) {
 					NodoListaDoblementeLigada<T> encontrado = actual as NodoListaDoblementeLigada<T>;
 
-					if(encontrado.Anterior is NodoListaLigada<T>)
+					if(encontrado.Anterior is object)
 						encontrado.Anterior.Siguiente = encontrado.Siguiente;
 
-					if(encontrado.Siguiente is NodoListaLigada<T>)
+					if(encontrado.Siguiente is object)
 						(encontrado.Siguiente as NodoListaDoblementeLigada<T>).Anterior = encontrado.Anterior;
 					else
 						this.cola = encontrado.Anterior;

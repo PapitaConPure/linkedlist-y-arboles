@@ -22,7 +22,6 @@ namespace LinkedList {
 		public FListaLigada(ListaLigada<string> listaLigada) {
 			this.InitializeComponent();
 			this.listaLigada = listaLigada;
-			this.listaLigada.QuitarÚltimo();
 			this.fElemento = new FElemento();
 			this.ActualizarListBox();
 		}

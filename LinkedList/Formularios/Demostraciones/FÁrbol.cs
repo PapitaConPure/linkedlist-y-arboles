@@ -15,6 +15,7 @@ namespace LinkedList {
 		private readonly ÁrbolBinario<string> árbolBinario;
 		private readonly FElemento fElemento;
 		NodoÁrbolBinario<string> mostrado;
+		private ÁrbolBinario<string>.Orden orden;
 
 		public FÁrbol() {
 			this.InitializeComponent();
@@ -139,7 +140,7 @@ namespace LinkedList {
 			this.lsbElementos.Items.Clear();
 			int c = 0;
 
-			foreach(string elemento in this.árbolBinario.AVector(ÁrbolBinario<string>.Orden.In))
+			foreach(string elemento in this.árbolBinario.AVector(this.orden))
 				this.lsbElementos.Items.Add($"[{c++}] {elemento}");
 
 			this.mostrado = this.árbolBinario.Raíz;
@@ -165,22 +166,32 @@ namespace LinkedList {
 				tbNodo.Text = "";
 		}
 
-		private void EjecutarPruebas() {
-			this.EjecutarPrueba(100);
-			this.EjecutarPrueba(1_000);
-			this.EjecutarPrueba(10_000);
+		private void RbOrden_CheckedChanged(object sender, EventArgs e) {
+			if(this.rbPreOrden.Checked)
+				this.orden = ÁrbolBinario<string>.Orden.Pre;
+			else if(this.rbInOrden.Checked)
+				this.orden = ÁrbolBinario<string>.Orden.In;
+			else if(this.rbPostOrden.Checked)
+				this.orden = ÁrbolBinario<string>.Orden.Post;
+			this.ActualizarListBoxYVisualizador();
 		}
 
-		private void EjecutarPrueba(int cantidad) {
-			string[] pruebas = StringTester.GenerarTextosBasura(cantidad, 5);
+		//private void EjecutarPruebas() {
+		//	this.EjecutarPrueba(100);
+		//	this.EjecutarPrueba(1_000);
+		//	this.EjecutarPrueba(10_000);
+		//}
 
-			StringTester.ComenzarPrueba();
+		//private void EjecutarPrueba(int cantidad) {
+		//	string[] pruebas = StringTester.GenerarTextosBasura(cantidad, 5);
 
-			foreach(string prueba in pruebas)
-				this.árbolBinario.Agregar(prueba);
+		//	StringTester.ComenzarPrueba();
 
-			long ms = StringTester.FinalizarPrueba();
-			MessageBox.Show($"Tiempo de adición: {ms}");
-		}
+		//	foreach(string prueba in pruebas)
+		//		this.árbolBinario.Agregar(prueba);
+
+		//	long ms = StringTester.FinalizarPrueba();
+		//	MessageBox.Show($"Tiempo de adición: {ms}");
+		//}
 	}
 }

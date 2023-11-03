@@ -12,6 +12,7 @@ namespace Estructuras.Genéricas {
 		/// <summary>
 		/// Crea una nueva instancia de <see cref="ListaLigada{T}"/> cuyos valores iniciales son dados por el vector facilitado
 		/// </summary>
+		/// <param name="valores">Valores con los cuales inicializar la <see cref="ListaLigada{T}"/></param>
 		/// <remarks>Los valores se ingresan en el orden que fueron recibidos, siendo el primero la cabeza o principio y el último la cola o final</remarks>
 		public ListaLigada(T[] valores) {
 			this.cabeza = null;

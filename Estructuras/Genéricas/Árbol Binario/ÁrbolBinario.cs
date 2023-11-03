@@ -90,6 +90,10 @@ namespace Estructuras.Genéricas {
 			return true;
 		}
 
+		/// <summary>
+		/// Agrega un valor al <see cref="ÁrbolBinario{T}"/> de forma ordenada
+		/// </summary>
+		/// <param name="valor">El valor a integrar</param>
 		public void Agregar(T valor) {
 			if(this.Vacío) {
 				this.raíz = new NodoÁrbolBinario<T>(valor);
@@ -100,6 +104,10 @@ namespace Estructuras.Genéricas {
 			this.Cantidad++;
 		}
 
+		/// <summary>
+		/// Quita la ocurrencia más temprana del <paramref name="valor"/> indicado del <see cref="ÁrbolBinario{T}"/>
+		/// </summary>
+		/// <param name="valor">El valor a quitar</param>
 		public bool Quitar(T valor) {
 			int comparación = this.raíz.Valor.CompareTo(valor);
 
@@ -119,11 +127,20 @@ namespace Estructuras.Genéricas {
 			return resultado is NodoÁrbolBinario<T>;
 		}
 
+		/// <summary>
+		/// Quita la raíz del <see cref="ÁrbolBinario{T}"/> junto a todas sus ramas
+		/// </summary>
 		public void Limpiar() {
 			this.raíz = null;
 			this.Cantidad = 0;
 		}
 
+		/// <summary>
+		/// Copia todos los elementos del <see cref="ÁrbolBinario{T}"/> en un nuevo vector
+		/// </summary>
+		/// <param name="orden">Orden de recorrido a utilizar para construir el nuevo vector</param>
+		/// <returns>Un nuevo vector con los elementos de este <see cref="ÁrbolBinario{T}"/>, acorde al <paramref name="orden"/> indicado</returns>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public T[] AVector(Orden orden) {
 			ListaLigada<T> lista = new ListaLigada<T>();
 			this.RecorrerNodo(lista, this.raíz, orden);
@@ -134,10 +151,25 @@ namespace Estructuras.Genéricas {
 			return vector;
 		}
 
+		/// <summary>
+		/// Copia todos los elementos del <see cref="ÁrbolBinario{T}"/> en un nuevo vector
+		/// </summary>
+		/// <returns>Un nuevo vector con los elementos de este <see cref="ÁrbolBinario{T}"/>, de forma ordenada</returns>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public T[] AVector() {
 			return this.AVector(Orden.In);
 		}
 
+		/// <summary>
+		/// Copia los elementos del <see cref="ÁrbolBinario{T}"/> en el vector <paramref name="destino"/> indicado
+		/// </summary>
+		/// <remarks>Los elementos a copiar y/o su posición varían dependiendo del <paramref name="orden"/> de recorrido indicado para la operación</remarks>
+		/// <param name="destino">El vector al cual copiar los elementos del <see cref="ÁrbolBinario{T}"/></param>
+		/// <param name="orden">Orden de recorrido del <see cref="ÁrbolBinario{T}"/> a utilizar para popular el vector <paramref name="destino"/></param>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento del <see cref="ÁrbolBinario{T}"/> a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar del <see cref="ÁrbolBinario{T}"/></param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		/// <exception cref="ArgumentException"></exception>
 		public void CopiarEn(T[] destino, Orden orden, int índiceInicio = -1, int cantidad = -1) {
 			ListaLigada<T> lista = new ListaLigada<T>();
 			this.RecorrerNodo(lista, this.raíz, orden);
@@ -146,10 +178,28 @@ namespace Estructuras.Genéricas {
 			lista.CopiarEn(destino, índiceInicio, cantidad);
 		}
 
+		/// <summary>
+		/// Copia los elementos del <see cref="ÁrbolBinario{T}"/> en el vector <paramref name="destino"/> indicado
+		/// </summary>
+		/// <param name="destino">El vector al cual copiar los elementos del <see cref="ÁrbolBinario{T}"/></param>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento del <see cref="ÁrbolBinario{T}"/> a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar del <see cref="ÁrbolBinario{T}"/></param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		/// <exception cref="ArgumentException"></exception>
 		public void CopiarEn(T[] destino, int índiceInicio = -1, int cantidad = -1) {
 			this.CopiarEn(destino, Orden.In, índiceInicio, cantidad);
 		}
 
+		/// <summary>
+		/// Busca un <see cref="NodoÁrbolBinario{T}"/> con el <paramref name="valor"/> entre los subárboles inmediatos
+		/// </summary>
+		/// <remarks>Usado para recorrido recursivo</remarks>
+		/// <param name="nodo"><see cref="NodoÁrbolBinario{T}"/> en el cual buscar el <paramref name="valor"/> indicado</param>
+		/// <param name="valor">Valor a buscar en el <see cref="NodoÁrbolBinario{T}"/> actual o los subárboles inmediatos</param>
+		/// <returns>
+		/// El <see cref="NodoÁrbolBinario{T}"/> con el <paramref name="valor"/> indicado, 
+		/// o <see langword="null"/> si no se lo encontró en ninguna de las posteriores llamadas (o el nodo actual no existe)
+		/// </returns>
 		private NodoÁrbolBinario<T> BuscarNodo(NodoÁrbolBinario<T> nodo, T valor) {
 			if(nodo is null)
 				return null;
@@ -165,6 +215,13 @@ namespace Estructuras.Genéricas {
 			return nodo;
 		}
 
+		/// <summary>
+		/// Procesa un <see cref="NodoÁrbolBinario{T}"/> y sus subárboles inmediatos para compilar el resultado en la <paramref name="lista"/> indicada según el <paramref name="orden"/> deseado
+		/// </summary>
+		/// <remarks>Usado para recorrido recursivo</remarks>
+		/// <param name="lista">La <see cref="ListaLigada{T}"/> sobre la cual volcar el resultado del recorrido</param>
+		/// <param name="orden">Orden de recorrido del <see cref="ÁrbolBinario{T}"/> a utilizar para popular el vector <paramref name="destino"/></param>
+		/// <param name="nodo"><see cref="NodoÁrbolBinario{T}"/> a recorrer</param>
 		private void RecorrerNodo(ListaLigada<T> lista, NodoÁrbolBinario<T> nodo, Orden orden) {
 			if(nodo is null)
 				return;
@@ -190,6 +247,12 @@ namespace Estructuras.Genéricas {
 			}
 		}
 
+		/// <summary>
+		/// Agrega un <see cref="NodoÁrbolBinario{T}"/> con el <paramref name="valor"/> deseado en el subárbol que cumpla las condiciones necesarias
+		/// </summary>
+		/// <remarks>Usado para recorrido recursivo</remarks>
+		/// <param name="nodo"><see cref="NodoÁrbolBinario{T}"/> a recorrer</param>
+		/// <param name="valor">Nuevo valor a incluir</param>
 		private void AgregarNodo(NodoÁrbolBinario<T> nodo, T valor) {
 			int comparación = valor.CompareTo(nodo.Valor);
 
@@ -206,6 +269,17 @@ namespace Estructuras.Genéricas {
 			}
 		}
 
+		/// <summary>
+		/// Busca un <see cref="NodoÁrbolBinario{T}"/> con el <paramref name="valor"/> entre los subárboles inmediatos. 
+		/// Si este mismo tiene lo que se busca, se lo reemplaza por el subárbol inferior más correcto para mantener el orden
+		/// </summary>
+		/// <remarks>Usado para recorrido recursivo</remarks>
+		/// <param name="nodo"><see cref="NodoÁrbolBinario{T}"/> en el cual buscar el <paramref name="valor"/> indicado</param>
+		/// <param name="valor">Valor a buscar en el <see cref="NodoÁrbolBinario{T}"/> actual o los subárboles inmediatos</param>
+		/// <returns>
+		/// El <see cref="NodoÁrbolBinario{T}"/> con el <paramref name="valor"/> indicado, 
+		/// o <see langword="null"/> si no se lo encontró en ninguna de las posteriores llamadas (o el nodo actual no existe)
+		/// </returns>
 		private NodoÁrbolBinario<T> QuitarNodo(NodoÁrbolBinario<T> nodo, T valor) {
 			if(nodo is null)
 				return null;
@@ -235,6 +309,11 @@ namespace Estructuras.Genéricas {
 			return nodo;
 		}
 
+		/// <summary>
+		/// Busca e identifica el valor del <see cref="NodoÁrbolBinario{T}"/> más a la izquierda desde el <paramref name="nodo"/> actual
+		/// </summary>
+		/// <param name="nodo"><see cref="NodoÁrbolBinario{T}"/> desde el cuál buscar</param>
+		/// <returns>El menor valor encontrado</returns>
 		private T CalcularMenorValor(NodoÁrbolBinario<T> nodo) {
 			while(nodo.Izquierdo is NodoÁrbolBinario<T>)
 				nodo = nodo.Izquierdo;
