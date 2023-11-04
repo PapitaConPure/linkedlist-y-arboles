@@ -24,6 +24,20 @@ Se sostienen las interfaces [`IColección`](/Estructuras/No%20Genéricas/IColecc
 ### Lista Ligada
 Es una lista que consiste de objetos nodos que tienen cada uno la referencia al siguiente nodo de la lista (están "ligados"). Solo se puede recorrer de forma secuencial hacia delante.
 
+**Modo de uso**
+```cs
+ListaLigada lista = new ListaLigada();
+lista.Agregar("hola");
+lista.Agregar(42);
+lista.Agregar(3.14159265);
+lista.QuitarPrimero(); //"hola"
+lista.QuitarÚltimo(); //3.14159265
+lista.AgregarPrimero(true);
+
+foreach(object elemento in lista.AVector())
+	this.listBox1.Items.Add(elemento); // true, 42
+```
+
 Además de la clase nodo, se tiene una clase administradora que representa la lista en sí, conteniendo esta una referencia al Nodo del principio (la "cabeza") y del final (la "cola") de la lista y actuando como la interfaz de manipulación de los nodos.
 
 Para esta implementación, los nodos son la clase [`NodoListaLigada`](/Estructuras/No%20Genéricas/Lista%20Ligada/NodoListaLigada.cs),
@@ -38,6 +52,25 @@ Para esta implementación, se crearon las clases [`ListaDoblementeLigada`](/Estr
 
 ### Pila y Cola
 Las pilas y colas son estructuras de datos que exhiben los comportamientos de _"Último en Entrar, Primero en Salir"_ y _"Primero en entrar, Primero en Salir"_ respectivamente.
+
+**Modo de uso**
+```cs
+Pila pila = new Pila();
+pila.Apilar(12);
+pila.Apilar("Aa");
+pila.Apilar(false);
+pila.Desapilar(); //false
+pila.Desapilar(); //"Aa"
+pila.Desapilar(); //12
+
+Cola cola = new Cola();
+cola.Encolar(12);
+cola.Encolar("Aa");
+cola.Encolar(false);
+cola.Desencolar(); //12
+cola.Desencolar(); //"Aa"
+cola.Desencolar(); //false
+```
 
 Si bien pueden ser implementadas de varias formas, se aprovechan las clases `ListaLigada` y `ListaDoblementeLigada` para demostrar más aplicaciones de Listas Ligadas en esta implementación.
 * Se tienen las clases [`Pila`](/Estructuras/No%20Genéricas/General/Pila.cs) y [`Cola`](/Estructuras/No%20Genéricas/General/Pila.cs).
@@ -58,6 +91,13 @@ Características:
 * Debido a que los elementos deben poder ordenarse, deben ser comparables.
 * Inserción, eliminación y búsqueda bastante rápidos.
 * No indizado. No es el tipo de estructura a usar si se busca trabajar principalmente con índices
+
+**Modo de uso**
+```cs
+ÁrbolBinario árbol = new ÁrbolBinario();
+
+//Ejemplo pendiente
+```
 
 Esta implementación usa las clases [`ÁrbolBinario`](/Estructuras/No%20Genéricas/Árbol%20Binario/ÁrbolBinario.cs) y [`NodoÁrbolBinario`](/Estructuras/No%20Genéricas/Árbol%20Binario/NodoÁrbolBinario.cs) para lo comentado.
 
