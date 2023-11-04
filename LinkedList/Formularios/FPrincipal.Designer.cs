@@ -24,65 +24,32 @@ namespace LinkedList {
 		/// el contenido de este método con el editor de código.
 		/// </summary>
 		private void InitializeComponent() {
+			this.tlpBotones = new System.Windows.Forms.TableLayoutPanel();
+			this.btnSalir = new System.Windows.Forms.Button();
+			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.btnListaLigada = new System.Windows.Forms.Button();
 			this.btnListaDoblementeLigada = new System.Windows.Forms.Button();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.btnPila = new System.Windows.Forms.Button();
-			this.tlpBotones = new System.Windows.Forms.TableLayoutPanel();
 			this.btnCola = new System.Windows.Forms.Button();
 			this.gbArbolBinario = new System.Windows.Forms.Button();
-			this.btnSalir = new System.Windows.Forms.Button();
+			this.btnTablaHash = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
 			this.tlpBotones.SuspendLayout();
+			this.tableLayoutPanel1.SuspendLayout();
+			this.tableLayoutPanel2.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// btnListaLigada
-			// 
-			this.btnListaLigada.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnListaLigada.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
-			this.btnListaLigada.Location = new System.Drawing.Point(4, 5);
-			this.btnListaLigada.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.btnListaLigada.Name = "btnListaLigada";
-			this.btnListaLigada.Size = new System.Drawing.Size(364, 60);
-			this.btnListaLigada.TabIndex = 0;
-			this.btnListaLigada.Text = "Lista Ligada";
-			this.btnListaLigada.UseVisualStyleBackColor = true;
-			this.btnListaLigada.Click += new System.EventHandler(this.BtnListaLigada_Click);
-			// 
-			// btnListaDoblementeLigada
-			// 
-			this.btnListaDoblementeLigada.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnListaDoblementeLigada.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
-			this.btnListaDoblementeLigada.Location = new System.Drawing.Point(4, 75);
-			this.btnListaDoblementeLigada.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.btnListaDoblementeLigada.Name = "btnListaDoblementeLigada";
-			this.btnListaDoblementeLigada.Size = new System.Drawing.Size(364, 60);
-			this.btnListaDoblementeLigada.TabIndex = 1;
-			this.btnListaDoblementeLigada.Text = "Lista Doblemente Ligada";
-			this.btnListaDoblementeLigada.UseVisualStyleBackColor = true;
-			this.btnListaDoblementeLigada.Click += new System.EventHandler(this.BtnListaDoblementeLigada_Click);
-			// 
-			// btnPila
-			// 
-			this.btnPila.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnPila.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
-			this.btnPila.Location = new System.Drawing.Point(4, 160);
-			this.btnPila.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.btnPila.Name = "btnPila";
-			this.btnPila.Size = new System.Drawing.Size(364, 60);
-			this.btnPila.TabIndex = 2;
-			this.btnPila.Text = "Pila";
-			this.btnPila.UseVisualStyleBackColor = true;
-			this.btnPila.Click += new System.EventHandler(this.BtnPila_Click);
 			// 
 			// tlpBotones
 			// 
 			this.tlpBotones.ColumnCount = 1;
 			this.tlpBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tlpBotones.Controls.Add(this.btnListaLigada, 0, 0);
-			this.tlpBotones.Controls.Add(this.btnPila, 0, 3);
-			this.tlpBotones.Controls.Add(this.btnListaDoblementeLigada, 0, 1);
-			this.tlpBotones.Controls.Add(this.btnCola, 0, 4);
-			this.tlpBotones.Controls.Add(this.gbArbolBinario, 0, 6);
+			this.tlpBotones.Controls.Add(this.tableLayoutPanel1, 0, 0);
 			this.tlpBotones.Controls.Add(this.btnSalir, 0, 8);
+			this.tlpBotones.Controls.Add(this.tableLayoutPanel2, 0, 1);
+			this.tlpBotones.Controls.Add(this.gbArbolBinario, 0, 3);
+			this.tlpBotones.Controls.Add(this.btnTablaHash, 0, 4);
+			this.tlpBotones.Controls.Add(this.button2, 0, 6);
 			this.tlpBotones.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tlpBotones.Location = new System.Drawing.Point(16, 18);
 			this.tlpBotones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -100,32 +67,6 @@ namespace LinkedList {
 			this.tlpBotones.Size = new System.Drawing.Size(372, 485);
 			this.tlpBotones.TabIndex = 12;
 			// 
-			// btnCola
-			// 
-			this.btnCola.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnCola.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
-			this.btnCola.Location = new System.Drawing.Point(4, 230);
-			this.btnCola.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.btnCola.Name = "btnCola";
-			this.btnCola.Size = new System.Drawing.Size(364, 60);
-			this.btnCola.TabIndex = 3;
-			this.btnCola.Text = "Cola";
-			this.btnCola.UseVisualStyleBackColor = true;
-			this.btnCola.Click += new System.EventHandler(this.BtnCola_Click);
-			// 
-			// gbArbolBinario
-			// 
-			this.gbArbolBinario.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gbArbolBinario.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
-			this.gbArbolBinario.Location = new System.Drawing.Point(4, 315);
-			this.gbArbolBinario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.gbArbolBinario.Name = "gbArbolBinario";
-			this.gbArbolBinario.Size = new System.Drawing.Size(364, 60);
-			this.gbArbolBinario.TabIndex = 4;
-			this.gbArbolBinario.Text = "Arbol Binario";
-			this.gbArbolBinario.UseVisualStyleBackColor = true;
-			this.gbArbolBinario.Click += new System.EventHandler(this.GbArbolBinario_Click);
-			// 
 			// btnSalir
 			// 
 			this.btnSalir.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -138,6 +79,122 @@ namespace LinkedList {
 			this.btnSalir.Text = "Salir";
 			this.btnSalir.UseVisualStyleBackColor = true;
 			this.btnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
+			// 
+			// tableLayoutPanel1
+			// 
+			this.tableLayoutPanel1.ColumnCount = 2;
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel1.Controls.Add(this.btnListaDoblementeLigada, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.btnListaLigada, 0, 0);
+			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+			this.tableLayoutPanel1.RowCount = 1;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(366, 64);
+			this.tableLayoutPanel1.TabIndex = 0;
+			// 
+			// btnListaLigada
+			// 
+			this.btnListaLigada.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.btnListaLigada.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
+			this.btnListaLigada.Location = new System.Drawing.Point(4, 5);
+			this.btnListaLigada.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.btnListaLigada.Name = "btnListaLigada";
+			this.btnListaLigada.Size = new System.Drawing.Size(175, 54);
+			this.btnListaLigada.TabIndex = 0;
+			this.btnListaLigada.Text = "Lista Ligada";
+			this.btnListaLigada.UseVisualStyleBackColor = true;
+			this.btnListaLigada.Click += new System.EventHandler(this.BtnListaLigada_Click);
+			// 
+			// btnListaDoblementeLigada
+			// 
+			this.btnListaDoblementeLigada.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.btnListaDoblementeLigada.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
+			this.btnListaDoblementeLigada.Location = new System.Drawing.Point(187, 5);
+			this.btnListaDoblementeLigada.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.btnListaDoblementeLigada.Name = "btnListaDoblementeLigada";
+			this.btnListaDoblementeLigada.Size = new System.Drawing.Size(175, 54);
+			this.btnListaDoblementeLigada.TabIndex = 1;
+			this.btnListaDoblementeLigada.Text = "L. L. Doble";
+			this.btnListaDoblementeLigada.UseVisualStyleBackColor = true;
+			this.btnListaDoblementeLigada.Click += new System.EventHandler(this.BtnListaDoblementeLigada_Click);
+			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.ColumnCount = 2;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Controls.Add(this.btnCola, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.btnPila, 0, 0);
+			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 73);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(366, 64);
+			this.tableLayoutPanel2.TabIndex = 0;
+			// 
+			// btnPila
+			// 
+			this.btnPila.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.btnPila.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
+			this.btnPila.Location = new System.Drawing.Point(4, 5);
+			this.btnPila.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.btnPila.Name = "btnPila";
+			this.btnPila.Size = new System.Drawing.Size(175, 54);
+			this.btnPila.TabIndex = 1;
+			this.btnPila.Text = "Pila";
+			this.btnPila.UseVisualStyleBackColor = true;
+			this.btnPila.Click += new System.EventHandler(this.BtnPila_Click);
+			// 
+			// btnCola
+			// 
+			this.btnCola.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.btnCola.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
+			this.btnCola.Location = new System.Drawing.Point(187, 5);
+			this.btnCola.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.btnCola.Name = "btnCola";
+			this.btnCola.Size = new System.Drawing.Size(175, 54);
+			this.btnCola.TabIndex = 2;
+			this.btnCola.Text = "Cola";
+			this.btnCola.UseVisualStyleBackColor = true;
+			this.btnCola.Click += new System.EventHandler(this.BtnCola_Click);
+			// 
+			// gbArbolBinario
+			// 
+			this.gbArbolBinario.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
+			this.gbArbolBinario.Location = new System.Drawing.Point(4, 160);
+			this.gbArbolBinario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.gbArbolBinario.Name = "gbArbolBinario";
+			this.gbArbolBinario.Size = new System.Drawing.Size(364, 60);
+			this.gbArbolBinario.TabIndex = 2;
+			this.gbArbolBinario.Text = "Arbol Binario de Búsqueda";
+			this.gbArbolBinario.UseVisualStyleBackColor = true;
+			this.gbArbolBinario.Click += new System.EventHandler(this.GbArbolBinario_Click);
+			// 
+			// btnTablaHash
+			// 
+			this.btnTablaHash.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.btnTablaHash.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
+			this.btnTablaHash.Location = new System.Drawing.Point(3, 228);
+			this.btnTablaHash.Name = "btnTablaHash";
+			this.btnTablaHash.Size = new System.Drawing.Size(366, 64);
+			this.btnTablaHash.TabIndex = 3;
+			this.btnTablaHash.Text = "Tabla de Hash";
+			this.btnTablaHash.UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
+			this.button2.Location = new System.Drawing.Point(3, 313);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(366, 64);
+			this.button2.TabIndex = 4;
+			this.button2.Text = "Diccionario";
+			this.button2.UseVisualStyleBackColor = true;
 			// 
 			// FPrincipal
 			// 
@@ -155,18 +212,24 @@ namespace LinkedList {
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FPrincipal_FormClosed);
 			this.Load += new System.EventHandler(this.FPrincipal_Load);
 			this.tlpBotones.ResumeLayout(false);
+			this.tableLayoutPanel1.ResumeLayout(false);
+			this.tableLayoutPanel2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
-		private System.Windows.Forms.Button btnListaLigada;
-		private System.Windows.Forms.Button btnListaDoblementeLigada;
-		private System.Windows.Forms.Button btnPila;
 		private System.Windows.Forms.TableLayoutPanel tlpBotones;
-		private System.Windows.Forms.Button btnCola;
-		private System.Windows.Forms.Button gbArbolBinario;
 		private System.Windows.Forms.Button btnSalir;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.Button btnListaDoblementeLigada;
+		private System.Windows.Forms.Button btnListaLigada;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.Button btnCola;
+		private System.Windows.Forms.Button btnPila;
+		private System.Windows.Forms.Button gbArbolBinario;
+		private System.Windows.Forms.Button btnTablaHash;
+		private System.Windows.Forms.Button button2;
 	}
 }
 

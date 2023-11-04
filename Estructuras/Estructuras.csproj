@@ -43,13 +43,17 @@
   <ItemGroup>
     <Compile Include="Genéricas\General\Cola.cs" />
     <Compile Include="Genéricas\General\Pila.cs" />
-    <Compile Include="Genéricas\IColección.cs" />
+    <Compile Include="Genéricas\Interfaces\IColección.cs" />
     <Compile Include="Genéricas\Genérico.cs" />
-    <Compile Include="Genéricas\ILista.cs" />
+    <Compile Include="Genéricas\Interfaces\IDiccionario.cs" />
+    <Compile Include="Genéricas\Interfaces\ILista.cs" />
     <Compile Include="Genéricas\Lista Ligada\ListaDoblementeLigada\ListaDoblementeLigada.cs" />
     <Compile Include="Genéricas\Lista Ligada\ListaDoblementeLigada\NodoListaDoblementeLigada.cs" />
     <Compile Include="Genéricas\Lista Ligada\ListaLigada.cs" />
     <Compile Include="Genéricas\Lista Ligada\NodoListaLigada.cs" />
+    <Compile Include="Genéricas\ParOrdenado.cs" />
+    <Compile Include="Genéricas\TablaHash\NodoTablaHash.cs" />
+    <Compile Include="Genéricas\TablaHash\TablaHash.cs" />
     <Compile Include="Genéricas\Árbol Binario\NodoÁrbolBinario.cs" />
     <Compile Include="Genéricas\Árbol Binario\ÁrbolBinario.cs" />
     <Compile Include="No Genéricas\ILista.cs" />

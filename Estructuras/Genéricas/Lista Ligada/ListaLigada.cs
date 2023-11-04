@@ -214,7 +214,6 @@ namespace Estructuras.Genéricas {
 			return quitado;
 		}
 
-
 		/// <summary>
 		/// Quita el último elemento de la <see cref="ListaLigada{T}"/> y lo devuelve
 		/// </summary>
