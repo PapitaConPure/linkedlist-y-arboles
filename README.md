@@ -5,7 +5,7 @@ Se creó una ventana administradora para la demostración de cada estructura.
 
 ## Estructuras No Genéricas
 ### Interfaces
-Se sostienen las interfaces [`IColección`](/Estructuras/No%20Genéricas/IColección.cs) e [`ILista`](/Estructuras/No%20Genéricas/IColección.cs) para definir métodos varios de las Estructuras No Genéricas:
+Se sostienen las interfaces [`IColección`](/Estructuras/No%20Genéricas/Interfaces/IColección.cs) e [`ILista`](/Estructuras/No%20Genéricas/Interfaces/IColección.cs) para definir métodos varios de las Estructuras No Genéricas:
 * `IColección`
   * `Cantidad: get int`
   * `Contiene(object valor): bool`
