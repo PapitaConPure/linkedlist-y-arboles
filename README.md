@@ -5,7 +5,7 @@ Se creó una ventana administradora para la demostración de cada estructura.
 
 ## Estructuras No Genéricas
 ### Interfaces
-Se sostienen las interfaces [`IColección`](/Estructuras/No%20Genéricas/Interfaces/IColección.cs) e [`ILista`](/Estructuras/No%20Genéricas/Interfaces/IColección.cs) para definir métodos varios de las Estructuras No Genéricas:
+Se sostienen las interfaces [`IColección`](/Estructuras/No%20Genéricas/IColección.cs) e [`ILista`](/Estructuras/No%20Genéricas/IColección.cs) para definir métodos varios de las Estructuras No Genéricas:
 * `IColección`
   * `Cantidad: get int`
   * `Contiene(object valor): bool`
@@ -65,7 +65,7 @@ Esta implementación usa las clases [`ÁrbolBinario`](/Estructuras/No%20Genéric
 Todas las anteriores estructuras (y más) se implementaron también de forma genérica para evitar perder rendimiento y cometer errores de tipado y casteo.
 
 ### Interfaces
-Las mismas del capítulo no genérico pero con implementación genérica
+Se incluyen las mismas del capítulo no genérico pero con implementación genérica
 * `IColección<T>`
   * `Cantidad: get int`
   * `Contiene(T valor): bool`
@@ -80,6 +80,17 @@ Las mismas del capítulo no genérico pero con implementación genérica
   * `QuitarEn(int idx): T`
   * `ValorEn(int idx): T`
   * `ÍndiceDe(T valor): int`
+
+Además, se incluye la interfaz de [`IDiccionario<TClave, TValor>`](/Estructuras/Genéricas/Interfaces/IDiccionario.cs), que en sí misma implementa la interfaz `IColección<ParOrdenado<TClave, TValor>>`
+* [`IColección<T>`](/Estructuras/Genéricas/Interfaces/IColección.cs)
+* [`ParOrdenado<TClave, TValor`](/Estructuras/Genéricas/ParOrdenado.cs)
+* `IDiccionario<TClave, TValor>`
+  * `Claves: get TClave[]`
+  * `Valores: get TValor[]`
+  * `this[clave: TClave]: TValor`
+  * `Agregar(): bool`
+  * `Quitar(): bool`
+  * `ContieneClave(): bool`
 
 ### Implementaciones de Contrapartes No Genéricas
 * Listas Ligadas
@@ -96,4 +107,4 @@ Las mismas del capítulo no genérico pero con implementación genérica
   * [`NodoÁrbolBinario<T>`](/Estructuras/Genéricas/Árbol%20Binario/NodoÁrbolBinario.cs)
 
  ### Tabla de Hash
-> En camino...
+> Documentación pendiente...
