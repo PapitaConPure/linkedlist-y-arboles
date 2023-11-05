@@ -66,6 +66,7 @@ namespace LinkedList {
 			// 
 			// btnApilar
 			// 
+			this.btnApilar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnApilar.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnApilar.Location = new System.Drawing.Point(3, 3);
 			this.btnApilar.Name = "btnApilar";
@@ -77,6 +78,7 @@ namespace LinkedList {
 			// 
 			// btnRevisar
 			// 
+			this.btnRevisar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnRevisar.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnRevisar.Location = new System.Drawing.Point(3, 105);
 			this.btnRevisar.Name = "btnRevisar";
@@ -88,6 +90,7 @@ namespace LinkedList {
 			// 
 			// btnDesapilar
 			// 
+			this.btnDesapilar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnDesapilar.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnDesapilar.Location = new System.Drawing.Point(3, 54);
 			this.btnDesapilar.Name = "btnDesapilar";
@@ -99,6 +102,7 @@ namespace LinkedList {
 			// 
 			// btnLimpiar
 			// 
+			this.btnLimpiar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnLimpiar.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnLimpiar.Location = new System.Drawing.Point(3, 156);
 			this.btnLimpiar.Name = "btnLimpiar";
@@ -110,6 +114,7 @@ namespace LinkedList {
 			// 
 			// btnContiene
 			// 
+			this.btnContiene.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnContiene.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnContiene.Location = new System.Drawing.Point(3, 207);
 			this.btnContiene.Name = "btnContiene";
@@ -141,6 +146,7 @@ namespace LinkedList {
 			this.lsbElementos.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.lsbElementos.Size = new System.Drawing.Size(317, 238);
 			this.lsbElementos.TabIndex = 0;
+			this.lsbElementos.TabStop = false;
 			// 
 			// FPila
 			// 

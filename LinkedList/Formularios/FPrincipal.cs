@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Estructuras.Genéricas;
 
 namespace LinkedList {
 	public partial class FPrincipal: Form {
@@ -30,6 +31,7 @@ namespace LinkedList {
 					fs = new FileStream(this.rutaBin, FileMode.Open, FileAccess.Read);
 					BinaryFormatter bf = new BinaryFormatter();
 					this.sistema = bf.Deserialize(fs) as Sistema;
+					this.sistema.Actualizar();
 				}
 			} catch {
 			} finally {
@@ -81,10 +83,20 @@ namespace LinkedList {
 			fCola.Dispose();
 		}
 
-		private void GbArbolBinario_Click(object sender, EventArgs e) {
+		private void BtnÁrbolBinario_Click(object sender, EventArgs e) {
 			FÁrbol fÁrbol = new FÁrbol(this.sistema.ÁrbolBinario);
 			fÁrbol.ShowDialog();
 			fÁrbol.Dispose();
+		}
+
+		private void BtnTablaHash_Click(object sender, EventArgs e) {
+			FTablaHash fÁrbol = new FTablaHash(this.sistema.TablaHash);
+			fÁrbol.ShowDialog();
+			fÁrbol.Dispose();
+		}
+
+		private void BtnDiccionario_Click(object sender, EventArgs e) {
+			MessageBox.Show("No implementado", "", MessageBoxButtons.OK, MessageBoxIcon.Question);
 		}
 		#endregion
 

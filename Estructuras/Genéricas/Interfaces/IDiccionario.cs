@@ -1,22 +1,66 @@
-﻿namespace Estructuras.Genéricas {
+﻿using System;
+using System.Collections.Generic;
+
+namespace Estructuras.Genéricas {
 	public interface IDiccionario<TClave, TValor>: IColección<ParOrdenado<TClave, TValor>> {
+		/// <summary>
+		/// Devuelve una vector de todas las claves del diccionario
+		/// </summary>
 		TClave[] Claves { get; }
 
+		/// <summary>
+		/// Devuelve una vector de todos los valores del diccionario
+		/// </summary>
 		TValor[] Valores { get; }
 
 		/// <summary>
 		/// Obtiene un valor del diccionario por clave
 		/// </summary>
-		/// <param name="clave">El índice basado en 0 del elemento deseado</param>
-		/// <returns>El valor en la posición especificada de la lista</returns>
-		TValor this[TClave clave] { get; }
+		/// <param name="clave">La clave del elemento deseado</param>
+		/// <returns>El valor en la posición especificada del diccionario</returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="KeyNotFoundException"></exception>
+		TValor this[TClave clave] { get; set; }
 
-		bool Agregar(TClave clave, TValor valor);
+		/// <summary>
+		/// Inserta un <paramref name="valor"/> en el diccionario bajo la <paramref name="clave"/> especificada
+		/// </summary>
+		/// <param name="clave">Clave del valor</param>
+		/// <param name="valor">Valor a insertar</param>
+		/// <returns><see langword="true"/> si el valor se pudo agregar, <see langword="false"/> de lo contrario</returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		bool Insertar(TClave clave, TValor valor);
 
+		/// <summary>
+		/// Busca un valor por clave para devolverlo. 
+		/// </summary>
+		/// <remarks>Si no se encuentra un valor, <paramref name="encontrado"/> toma el valor por defecto de <typeparamref name="TValor"/></remarks>
+		/// <param name="clave">Clave a buscar</param>
+		/// <param name="encontrado">Resultado de la búsqueda</param>
+		/// <returns><see langword="true"/> si se encuentra un valor, <see langword="false"/> de lo contrario</returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		bool Buscar(TClave clave, out TValor encontrado);
+
+		/// <summary>
+		/// Busca un valor bajo la <paramref name="clave"/> especificada y lo devuelve.
+		/// </summary>
+		/// <remarks>Deberías usar <see cref="ContieneClave(TClave)"/> antes de llamar este método</remarks>
+		/// <param name="clave">Clave a buscar</param>
+		/// <returns>El valor bajo la clave especificada</returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="KeyNotFoundException"></exception>
+		TValor Encontrar(TClave clave);
+
+		/// <summary>
+		/// Quita una entrada del diccionario.
+		/// </summary>
+		/// <param name="clave">Clave de la entrada a quitar</param>
+		/// <returns>Si la clave se pudo quitar (<see langword="true"/>) o no (<see langword="false"/>)</returns>
+		/// <exception cref="ArgumentNullException"></exception>
 		bool Quitar(TClave clave);
 
 		/// <summary>
-		/// Revisa la coleccíón en busca del valor especificado e indica si se encontró o no
+		/// Revisa el diccionario en busca del valor especificado e indica si se encontró o no
 		/// </summary>
 		/// <param name="valor">Valor a buscar</param>
 		/// <returns><see langword="true"/> si se encontró, o <see langword="false"/> de lo contrario</returns>

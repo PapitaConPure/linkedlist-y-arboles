@@ -159,6 +159,7 @@ namespace LinkedList {
 			this.lsbElementos.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.lsbElementos.Size = new System.Drawing.Size(413, 407);
 			this.lsbElementos.TabIndex = 1;
+			this.lsbElementos.TabStop = false;
 			// 
 			// pnlRecorrido
 			// 

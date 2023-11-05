@@ -8,5 +8,9 @@
 			this.Clave = clave;
 			this.Valor = valor;
 		}
+
+		public override string ToString() {
+			return $"[{this.Clave}] {this.Valor}";
+		}
 	}
 }

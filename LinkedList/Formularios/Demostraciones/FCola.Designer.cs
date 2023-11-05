@@ -141,6 +141,7 @@ namespace LinkedList {
 			this.lsbElementos.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.lsbElementos.Size = new System.Drawing.Size(317, 238);
 			this.lsbElementos.TabIndex = 0;
+			this.lsbElementos.TabStop = false;
 			// 
 			// FCola
 			// 

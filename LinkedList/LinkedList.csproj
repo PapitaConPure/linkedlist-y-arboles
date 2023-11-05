@@ -46,11 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formularios\General\FEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\General\FEntrada.Designer.cs">
+      <DependentUpon>FEntrada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Demostraciones\FCola.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Demostraciones\FCola.Designer.cs">
       <DependentUpon>FCola.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Demostraciones\FTablaHash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Demostraciones\FTablaHash.Designer.cs">
+      <DependentUpon>FTablaHash.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\General\FElemento.cs">
       <SubType>Form</SubType>
@@ -92,6 +104,9 @@
     <EmbeddedResource Include="Formularios\Demostraciones\FPila.resx">
       <DependentUpon>FPila.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Demostraciones\FTablaHash.resx">
+      <DependentUpon>FTablaHash.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Demostraciones\FÁrbol.resx">
       <DependentUpon>FÁrbol.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FPrincipal.resx">
       <DependentUpon>FPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\General\FEntrada.resx">
+      <DependentUpon>FEntrada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

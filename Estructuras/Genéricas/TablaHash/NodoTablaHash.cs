@@ -6,6 +6,7 @@ namespace Estructuras.Genéricas {
 	/// </summary>
 	/// <typeparam name="TClave">Tipo de clave de la entrada</typeparam>
 	/// <typeparam name="TValor">Tivo de valor de la entrada</typeparam>
+	[Serializable]
 	public class NodoTablaHash<TClave, TValor> {
 		/// <summary>
 		/// Devuelve la clave de este <see cref="NodoTablaHash{TClave, TValor}"/>
