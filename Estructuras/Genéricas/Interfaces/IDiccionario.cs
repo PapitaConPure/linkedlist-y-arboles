@@ -42,7 +42,7 @@ namespace Estructuras.Genéricas {
 		bool Buscar(TClave clave, out TValor encontrado);
 
 		/// <summary>
-		/// Busca un valor bajo la <paramref name="clave"/> especificada y lo devuelve.
+		/// Busca el valor bajo la <paramref name="clave"/> especificada y lo devuelve.
 		/// </summary>
 		/// <remarks>Deberías usar <see cref="ContieneClave(TClave)"/> antes de llamar este método</remarks>
 		/// <param name="clave">Clave a buscar</param>
@@ -52,17 +52,17 @@ namespace Estructuras.Genéricas {
 		TValor Encontrar(TClave clave);
 
 		/// <summary>
-		/// Quita una entrada del diccionario.
+		/// Quita la entrada asociada a la <paramref name="clave"/> especificada del diccionario
 		/// </summary>
 		/// <param name="clave">Clave de la entrada a quitar</param>
-		/// <returns>Si la clave se pudo quitar (<see langword="true"/>) o no (<see langword="false"/>)</returns>
+		/// <returns>Si la entrada se pudo quitar (<see langword="true"/>) o no (<see langword="false"/>)</returns>
 		/// <exception cref="ArgumentNullException"></exception>
 		bool Quitar(TClave clave);
 
 		/// <summary>
-		/// Revisa el diccionario en busca del valor especificado e indica si se encontró o no
+		/// Revisa el diccionario en busca de la <paramref name="clave"/> especificada e indica si se encontró o no
 		/// </summary>
-		/// <param name="valor">Valor a buscar</param>
+		/// <param name="clave">Clave a buscar</param>
 		/// <returns><see langword="true"/> si se encontró, o <see langword="false"/> de lo contrario</returns>
 		bool ContieneClave(TClave clave);
 	}
