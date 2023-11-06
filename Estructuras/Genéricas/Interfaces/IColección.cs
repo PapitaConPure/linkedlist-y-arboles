@@ -38,6 +38,6 @@ namespace Estructuras.Genéricas {
 		/// <param name="cantidad">Cantidad de elementos a copiar de la colección</param>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		/// <exception cref="ArgumentException"></exception>
-		void CopiarEn(T[] destino, int índiceInicio = -1, int cantidad = -1);
+		void CopiarEn(T[] destino);
 	}
 }
