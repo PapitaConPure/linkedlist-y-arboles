@@ -1,4 +1,7 @@
-﻿namespace Estructuras.Genéricas {
+﻿using System;
+
+namespace Estructuras.Genéricas {
+	[Serializable]
 	public class ParOrdenado<TClave, TValor> {
 		public TClave Clave { get; }
 
