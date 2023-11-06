@@ -281,7 +281,7 @@ namespace Estructuras.Genéricas {
 		}
 
 		/// <summary>
-		/// Revisa la <see cref="TablaHash{TClave, TValor}"/> en busca del <paramref name="valor"/> especificado  e indica si se encontró o no
+		/// Revisa la <see cref="TablaHash{TClave, TValor}"/> en busca del <paramref name="valor"/> especificado e indica si se encontró o no
 		/// </summary>
 		/// <param name="valor">Valor a buscar</param>
 		/// <returns><see langword="true"/> si se encontró, o <see langword="false"/> de lo contrario</returns>
