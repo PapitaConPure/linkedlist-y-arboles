@@ -334,7 +334,6 @@ namespace Estructuras.Genéricas {
 		/// Copia los elementos de la <see cref="ListaLigada"/> en un nuevo vector
 		/// </summary>
 		/// <returns>Un nuevo vector con los elementos de esta <see cref="ListaLigada{T}"/></returns>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public T[] AVector() {
 			return this.AVector(0);
 		}
@@ -347,7 +346,7 @@ namespace Estructuras.Genéricas {
 		/// <param name="cantidad">Cantidad de elementos a copiar</param>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		/// <exception cref="ArgumentException"></exception>
-		public void CopiarEn(T[] destino, int índiceInicio = 0, int cantidad = -1) {
+		public void CopiarEn(T[] destino, int índiceInicio, int cantidad = -1) {
 			if(this.Vacía)
 				return;
 
@@ -372,6 +371,10 @@ namespace Estructuras.Genéricas {
 				actual = actual.Siguiente;
 				idx++;
 			}
+		}
+
+		public void CopiarEn(T[] destino) {
+			this.CopiarEn(destino, 0);
 		}
 
 		/// <summary>

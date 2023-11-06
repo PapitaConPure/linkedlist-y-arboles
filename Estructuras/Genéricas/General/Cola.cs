@@ -61,6 +61,14 @@ namespace Estructuras.Genéricas {
 			this.lista.Limpiar();
 		}
 
+		/// <inheritdoc cref="AVector()"/>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento en la <see cref="Cola{T}"/> a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar de la <see cref="Cola{T}"/>, -1 copia todo </param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		public T[] AVector(int índiceInicio, int cantidad = -1) {
+			return this.lista.AVector(índiceInicio, cantidad);
+		}
+
 		/// <summary>
 		/// Copia los elementos de la <see cref="Cola{T}"/> en un nuevo vector
 		/// </summary>
@@ -70,16 +78,22 @@ namespace Estructuras.Genéricas {
 			return this.lista.AVector();
 		}
 
+		/// <inheritdoc cref="CopiarEn(T[])"/>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento en la <see cref="Cola{T}"/> a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar de la <see cref="Cola{T}"/>, -1 copia todo </param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		public void CopiarEn(T[] destino, int índiceInicio, int cantidad = -1) {
+			this.lista.CopiarEn(destino, índiceInicio, cantidad);
+		}
+
 		/// <summary>
 		/// Copia los elementos de la <see cref="Cola{T}"/> en el vector <paramref name="destino"/> indicado
 		/// </summary>
+		/// <remarks>El primer elemento del vector creado es el que más tiende a salir</remarks>
 		/// <param name="destino">El vector al cual copiar los elementos de la <see cref="Cola{T}"/></param>
-		/// <param name="índiceInicio">La posición basada en 0 del primer elemento en la <see cref="Cola{T}"/> a copiar</param>
-		/// <param name="cantidad">Cantidad de elementos a copiar de la <see cref="Cola{T}"/></param>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		/// <exception cref="ArgumentException"></exception>
-		public void CopiarEn(T[] destino, int índiceInicio = -1, int cantidad = -1) {
-			this.lista.CopiarEn(destino, índiceInicio, cantidad);
+		public void CopiarEn(T[] destino) {
+			this.CopiarEn(destino, 0);
 		}
 	}
 }

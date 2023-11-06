@@ -135,42 +135,42 @@ namespace Estructuras.Genéricas {
 			this.Cantidad = 0;
 		}
 
-		/// <summary>
-		/// Copia todos los elementos del <see cref="ÁrbolBinario{T}"/> en un nuevo vector
-		/// </summary>
-		/// <param name="orden">Orden de recorrido a utilizar para construir el nuevo vector</param>
-		/// <returns>Un nuevo vector con los elementos de este <see cref="ÁrbolBinario{T}"/>, acorde al <paramref name="orden"/> indicado</returns>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
-		public T[] AVector(Orden orden) {
+		/// <inheritdoc cref="AVector(Orden)"/>
+		/// <inheritdoc cref="AVector(int, int)"/>
+		public T[] AVector(Orden orden, int índiceInicio, int cantidad = -1) {
 			ListaLigada<T> lista = new ListaLigada<T>();
 			this.RecorrerNodo(lista, this.raíz, orden);
 			this.Cantidad = lista.Cantidad;
 
-			T[] vector = new T[lista.Cantidad];
-			lista.CopiarEn(vector);
-			return vector;
+			return lista.AVector(índiceInicio, cantidad);
+		}
+
+		/// <inheritdoc cref="AVector()"/>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento del <see cref="ÁrbolBinario{T}"/> a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar del <see cref="ÁrbolBinario{T}"/>, -1 copia todo</param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		public T[] AVector(int índiceInicio, int cantidad = -1) {
+			return this.AVector(Orden.In, índiceInicio, cantidad);
+		}
+
+		/// <inheritdoc cref="AVector()"/>
+		/// <param name="orden">Orden de recorrido a utilizar para construir el nuevo vector</param>
+		/// <returns>Un nuevo vector con los elementos de este <see cref="ÁrbolBinario{T}"/>, acorde al <paramref name="orden"/> indicado</returns>
+		public T[] AVector(Orden orden) {
+			return this.AVector(orden, 0);
 		}
 
 		/// <summary>
 		/// Copia todos los elementos del <see cref="ÁrbolBinario{T}"/> en un nuevo vector
 		/// </summary>
 		/// <returns>Un nuevo vector con los elementos de este <see cref="ÁrbolBinario{T}"/>, de forma ordenada</returns>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public T[] AVector() {
 			return this.AVector(Orden.In);
 		}
 
-		/// <summary>
-		/// Copia los elementos del <see cref="ÁrbolBinario{T}"/> en el vector <paramref name="destino"/> indicado
-		/// </summary>
-		/// <remarks>Los elementos a copiar y/o su posición varían dependiendo del <paramref name="orden"/> de recorrido indicado para la operación</remarks>
-		/// <param name="destino">El vector al cual copiar los elementos del <see cref="ÁrbolBinario{T}"/></param>
-		/// <param name="orden">Orden de recorrido del <see cref="ÁrbolBinario{T}"/> a utilizar para popular el vector <paramref name="destino"/></param>
-		/// <param name="índiceInicio">La posición basada en 0 del primer elemento del <see cref="ÁrbolBinario{T}"/> a copiar</param>
-		/// <param name="cantidad">Cantidad de elementos a copiar del <see cref="ÁrbolBinario{T}"/></param>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
-		/// <exception cref="ArgumentException"></exception>
-		public void CopiarEn(T[] destino, Orden orden, int índiceInicio = -1, int cantidad = -1) {
+		/// <inheritdoc cref="CopiarEn(T[], Orden)"/>
+		/// <inheritdoc cref="CopiarEn(T[], int, int)"/>
+		public void CopiarEn(T[] destino, Orden orden, int índiceInicio, int cantidad = -1) {
 			ListaLigada<T> lista = new ListaLigada<T>();
 			this.RecorrerNodo(lista, this.raíz, orden);
 			this.Cantidad = lista.Cantidad;
@@ -178,16 +178,28 @@ namespace Estructuras.Genéricas {
 			lista.CopiarEn(destino, índiceInicio, cantidad);
 		}
 
+		/// <inheritdoc cref="CopiarEn(T[])"/>
+		/// <param name="índiceInicio">La posición basada en 0 del primer elemento del <see cref="ÁrbolBinario{T}"/> a copiar</param>
+		/// <param name="cantidad">Cantidad de elementos a copiar del <see cref="ÁrbolBinario{T}"/>, -1 copia todo</param>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		public void CopiarEn(T[] destino, int índiceInicio, int cantidad = -1) {
+			this.CopiarEn(destino, Orden.In, índiceInicio, cantidad);
+		}
+
+		/// <inheritdoc cref="CopiarEn(T[])"/>
+		/// <remarks>Los elementos a copiar y/o su posición varían dependiendo del <paramref name="orden"/> de recorrido indicado para la operación</remarks>
+		/// <param name="orden">Orden de recorrido del <see cref="ÁrbolBinario{T}"/> a utilizar para popular el vector <paramref name="destino"/></param>
+		public void CopiarEn(T[] destino, Orden orden) {
+			this.CopiarEn(destino, orden, 0);
+		}
+
 		/// <summary>
 		/// Copia los elementos del <see cref="ÁrbolBinario{T}"/> en el vector <paramref name="destino"/> indicado
 		/// </summary>
 		/// <param name="destino">El vector al cual copiar los elementos del <see cref="ÁrbolBinario{T}"/></param>
-		/// <param name="índiceInicio">La posición basada en 0 del primer elemento del <see cref="ÁrbolBinario{T}"/> a copiar</param>
-		/// <param name="cantidad">Cantidad de elementos a copiar del <see cref="ÁrbolBinario{T}"/></param>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		/// <exception cref="ArgumentException"></exception>
-		public void CopiarEn(T[] destino, int índiceInicio = -1, int cantidad = -1) {
-			this.CopiarEn(destino, Orden.In, índiceInicio, cantidad);
+		public void CopiarEn(T[] destino) {
+			this.CopiarEn(destino, 0);
 		}
 
 		/// <summary>
