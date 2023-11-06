@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Estructuras.Genéricas;
 
 namespace LinkedList {
@@ -14,6 +10,7 @@ namespace LinkedList {
 		public Cola<string> Cola;
 		public ÁrbolBinario<string> ÁrbolBinario;
 		public TablaHash<string, double> TablaHash;
+		public Diccionario<string, double> Diccionario;
 
 		public Sistema() {
 			this.ListaLigada = new ListaLigada<string>();
@@ -22,14 +19,21 @@ namespace LinkedList {
 			this.Cola = new Cola<string>();
 			this.ÁrbolBinario = new ÁrbolBinario<string>();
 			this.TablaHash = new TablaHash<string, double>();
+			this.Diccionario = new Diccionario<string, double>();
 		}
 
+		/// <summary>
+		/// Inicializar nuevas estructuras en caso de que se cargue serialización de una versión anterior
+		/// </summary>
 		internal void Actualizar() {
 			if(this.ÁrbolBinario is null)
 				this.ÁrbolBinario = new ÁrbolBinario<string>();
 
 			if(this.TablaHash is null)
 				this.TablaHash = new TablaHash<string, double>();
+			
+			if(this.Diccionario is null)
+				this.Diccionario = new Diccionario<string, double>();
 		}
 	}
 }

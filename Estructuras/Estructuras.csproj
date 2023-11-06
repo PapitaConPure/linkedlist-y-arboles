@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Genéricas\General\Diccionario.cs" />
     <Compile Include="Genéricas\General\Cola.cs" />
     <Compile Include="Genéricas\General\Pila.cs" />
     <Compile Include="Genéricas\Interfaces\IColección.cs" />

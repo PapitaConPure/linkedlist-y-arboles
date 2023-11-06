@@ -1,6 +1,6 @@
 ﻿
 namespace LinkedList {
-	partial class FTablaHash {
+	partial class FDiccionario {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -24,6 +24,8 @@ namespace LinkedList {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.gbElementos = new System.Windows.Forms.GroupBox();
+			this.lsbElementos = new System.Windows.Forms.ListBox();
 			this.tlpBotones = new System.Windows.Forms.TableLayoutPanel();
 			this.btnContiene = new System.Windows.Forms.Button();
 			this.btnInsertar = new System.Windows.Forms.Button();
@@ -34,24 +36,38 @@ namespace LinkedList {
 			this.btnContieneValor = new System.Windows.Forms.Button();
 			this.btnQuitar = new System.Windows.Forms.Button();
 			this.btnBuscar = new System.Windows.Forms.Button();
-			this.gbElementos = new System.Windows.Forms.GroupBox();
-			this.lsbElementos = new System.Windows.Forms.ListBox();
 			this.pnlExtra = new System.Windows.Forms.Panel();
-			this.lblCantidad = new System.Windows.Forms.Label();
-			this.gbCamposTabla = new System.Windows.Forms.GroupBox();
 			this.lblCoberturaCapacidad = new System.Windows.Forms.Label();
 			this.lblDivisorCantidadCapacidad = new System.Windows.Forms.Label();
-			this.pgbCoberturaCapacidad = new System.Windows.Forms.ProgressBar();
+			this.pgbCantidadCapacidad = new System.Windows.Forms.ProgressBar();
 			this.tbCapacidad = new System.Windows.Forms.TextBox();
-			this.pgbCoberturaMáxima = new System.Windows.Forms.ProgressBar();
-			this.tbCobertura = new System.Windows.Forms.TextBox();
-			this.lblCoberturaMáxima = new System.Windows.Forms.Label();
 			this.tbCantidad = new System.Windows.Forms.TextBox();
-			this.tlpBotones.SuspendLayout();
 			this.gbElementos.SuspendLayout();
+			this.tlpBotones.SuspendLayout();
 			this.pnlExtra.SuspendLayout();
-			this.gbCamposTabla.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// gbElementos
+			// 
+			this.gbElementos.Controls.Add(this.lsbElementos);
+			this.gbElementos.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gbElementos.Location = new System.Drawing.Point(168, 12);
+			this.gbElementos.Name = "gbElementos";
+			this.gbElementos.Size = new System.Drawing.Size(288, 417);
+			this.gbElementos.TabIndex = 1;
+			this.gbElementos.TabStop = false;
+			this.gbElementos.Text = "Los botones con (...) requieren ingresar claves o valores";
+			// 
+			// lsbElementos
+			// 
+			this.lsbElementos.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lsbElementos.FormattingEnabled = true;
+			this.lsbElementos.IntegralHeight = false;
+			this.lsbElementos.Location = new System.Drawing.Point(3, 16);
+			this.lsbElementos.Name = "lsbElementos";
+			this.lsbElementos.ScrollAlwaysVisible = true;
+			this.lsbElementos.Size = new System.Drawing.Size(282, 398);
+			this.lsbElementos.TabIndex = 1;
 			// 
 			// tlpBotones
 			// 
@@ -184,32 +200,12 @@ namespace LinkedList {
 			this.btnBuscar.UseVisualStyleBackColor = true;
 			this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
 			// 
-			// gbElementos
-			// 
-			this.gbElementos.Controls.Add(this.lsbElementos);
-			this.gbElementos.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gbElementos.Location = new System.Drawing.Point(168, 12);
-			this.gbElementos.Name = "gbElementos";
-			this.gbElementos.Size = new System.Drawing.Size(288, 417);
-			this.gbElementos.TabIndex = 1;
-			this.gbElementos.TabStop = false;
-			this.gbElementos.Text = "Los botones con (...) requieren ingresar claves o valores";
-			// 
-			// lsbElementos
-			// 
-			this.lsbElementos.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lsbElementos.FormattingEnabled = true;
-			this.lsbElementos.IntegralHeight = false;
-			this.lsbElementos.Location = new System.Drawing.Point(3, 16);
-			this.lsbElementos.Name = "lsbElementos";
-			this.lsbElementos.ScrollAlwaysVisible = true;
-			this.lsbElementos.Size = new System.Drawing.Size(282, 398);
-			this.lsbElementos.TabIndex = 1;
-			// 
 			// pnlExtra
 			// 
-			this.pnlExtra.Controls.Add(this.lblCantidad);
-			this.pnlExtra.Controls.Add(this.gbCamposTabla);
+			this.pnlExtra.Controls.Add(this.lblCoberturaCapacidad);
+			this.pnlExtra.Controls.Add(this.lblDivisorCantidadCapacidad);
+			this.pnlExtra.Controls.Add(this.pgbCantidadCapacidad);
+			this.pnlExtra.Controls.Add(this.tbCapacidad);
 			this.pnlExtra.Controls.Add(this.tbCantidad);
 			this.pnlExtra.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pnlExtra.Location = new System.Drawing.Point(456, 12);
@@ -217,103 +213,52 @@ namespace LinkedList {
 			this.pnlExtra.Size = new System.Drawing.Size(156, 417);
 			this.pnlExtra.TabIndex = 2;
 			// 
-			// lblCantidad
-			// 
-			this.lblCantidad.Location = new System.Drawing.Point(6, 3);
-			this.lblCantidad.Name = "lblCantidad";
-			this.lblCantidad.Size = new System.Drawing.Size(147, 13);
-			this.lblCantidad.TabIndex = 1;
-			this.lblCantidad.Text = "Entradas";
-			this.lblCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// gbCamposTabla
-			// 
-			this.gbCamposTabla.Controls.Add(this.lblCoberturaCapacidad);
-			this.gbCamposTabla.Controls.Add(this.lblDivisorCantidadCapacidad);
-			this.gbCamposTabla.Controls.Add(this.pgbCoberturaCapacidad);
-			this.gbCamposTabla.Controls.Add(this.tbCapacidad);
-			this.gbCamposTabla.Controls.Add(this.pgbCoberturaMáxima);
-			this.gbCamposTabla.Controls.Add(this.tbCobertura);
-			this.gbCamposTabla.Controls.Add(this.lblCoberturaMáxima);
-			this.gbCamposTabla.Location = new System.Drawing.Point(6, 49);
-			this.gbCamposTabla.Name = "gbCamposTabla";
-			this.gbCamposTabla.Size = new System.Drawing.Size(147, 120);
-			this.gbCamposTabla.TabIndex = 4;
-			this.gbCamposTabla.TabStop = false;
-			this.gbCamposTabla.Text = "Índices de Tabla";
-			// 
 			// lblCoberturaCapacidad
 			// 
-			this.lblCoberturaCapacidad.Location = new System.Drawing.Point(6, 16);
+			this.lblCoberturaCapacidad.Location = new System.Drawing.Point(6, 3);
 			this.lblCoberturaCapacidad.Name = "lblCoberturaCapacidad";
-			this.lblCoberturaCapacidad.Size = new System.Drawing.Size(135, 13);
-			this.lblCoberturaCapacidad.TabIndex = 1;
-			this.lblCoberturaCapacidad.Text = "Cobertura de Índices";
+			this.lblCoberturaCapacidad.Size = new System.Drawing.Size(147, 13);
+			this.lblCoberturaCapacidad.TabIndex = 6;
+			this.lblCoberturaCapacidad.Text = "Cantidad / Capacidad";
 			this.lblCoberturaCapacidad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// lblDivisorCantidadCapacidad
 			// 
-			this.lblDivisorCantidadCapacidad.Location = new System.Drawing.Point(67, 32);
+			this.lblDivisorCantidadCapacidad.Location = new System.Drawing.Point(71, 48);
 			this.lblDivisorCantidadCapacidad.Name = "lblDivisorCantidadCapacidad";
-			this.lblDivisorCantidadCapacidad.Size = new System.Drawing.Size(13, 20);
-			this.lblDivisorCantidadCapacidad.TabIndex = 3;
+			this.lblDivisorCantidadCapacidad.Size = new System.Drawing.Size(17, 20);
+			this.lblDivisorCantidadCapacidad.TabIndex = 9;
 			this.lblDivisorCantidadCapacidad.Text = "/";
 			this.lblDivisorCantidadCapacidad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// pgbCoberturaCapacidad
+			// pgbCantidadCapacidad
 			// 
-			this.pgbCoberturaCapacidad.Location = new System.Drawing.Point(6, 58);
-			this.pgbCoberturaCapacidad.Name = "pgbCoberturaCapacidad";
-			this.pgbCoberturaCapacidad.Size = new System.Drawing.Size(135, 23);
-			this.pgbCoberturaCapacidad.TabIndex = 0;
+			this.pgbCantidadCapacidad.Location = new System.Drawing.Point(6, 19);
+			this.pgbCantidadCapacidad.Name = "pgbCantidadCapacidad";
+			this.pgbCantidadCapacidad.Size = new System.Drawing.Size(147, 23);
+			this.pgbCantidadCapacidad.TabIndex = 5;
 			// 
 			// tbCapacidad
 			// 
-			this.tbCapacidad.Location = new System.Drawing.Point(86, 32);
+			this.tbCapacidad.Location = new System.Drawing.Point(94, 48);
 			this.tbCapacidad.Name = "tbCapacidad";
 			this.tbCapacidad.ReadOnly = true;
-			this.tbCapacidad.Size = new System.Drawing.Size(55, 20);
-			this.tbCapacidad.TabIndex = 2;
+			this.tbCapacidad.Size = new System.Drawing.Size(59, 20);
+			this.tbCapacidad.TabIndex = 7;
 			this.tbCapacidad.TabStop = false;
 			this.tbCapacidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// pgbCoberturaMáxima
-			// 
-			this.pgbCoberturaMáxima.Location = new System.Drawing.Point(6, 87);
-			this.pgbCoberturaMáxima.Name = "pgbCoberturaMáxima";
-			this.pgbCoberturaMáxima.Size = new System.Drawing.Size(135, 10);
-			this.pgbCoberturaMáxima.TabIndex = 0;
-			// 
-			// tbCobertura
-			// 
-			this.tbCobertura.Location = new System.Drawing.Point(6, 32);
-			this.tbCobertura.Name = "tbCobertura";
-			this.tbCobertura.ReadOnly = true;
-			this.tbCobertura.Size = new System.Drawing.Size(55, 20);
-			this.tbCobertura.TabIndex = 2;
-			this.tbCobertura.TabStop = false;
-			this.tbCobertura.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// lblCoberturaMáxima
-			// 
-			this.lblCoberturaMáxima.Location = new System.Drawing.Point(6, 100);
-			this.lblCoberturaMáxima.Name = "lblCoberturaMáxima";
-			this.lblCoberturaMáxima.Size = new System.Drawing.Size(135, 13);
-			this.lblCoberturaMáxima.TabIndex = 1;
-			this.lblCoberturaMáxima.Text = "Cobertura Máxima";
-			this.lblCoberturaMáxima.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
 			// tbCantidad
 			// 
-			this.tbCantidad.Location = new System.Drawing.Point(6, 19);
+			this.tbCantidad.Location = new System.Drawing.Point(6, 48);
 			this.tbCantidad.Name = "tbCantidad";
 			this.tbCantidad.ReadOnly = true;
-			this.tbCantidad.Size = new System.Drawing.Size(147, 20);
-			this.tbCantidad.TabIndex = 2;
+			this.tbCantidad.Size = new System.Drawing.Size(59, 20);
+			this.tbCantidad.TabIndex = 8;
 			this.tbCantidad.TabStop = false;
 			this.tbCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// FTablaHash
+			// FDiccionario
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -322,22 +267,22 @@ namespace LinkedList {
 			this.Controls.Add(this.tlpBotones);
 			this.Controls.Add(this.pnlExtra);
 			this.MinimumSize = new System.Drawing.Size(640, 480);
-			this.Name = "FTablaHash";
+			this.Name = "FDiccionario";
 			this.Padding = new System.Windows.Forms.Padding(12);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Demostración de Tabla Hash con Lista Ligada";
-			this.tlpBotones.ResumeLayout(false);
+			this.Text = "Demostración de Diccionario con Vector de Pares Ordenados";
 			this.gbElementos.ResumeLayout(false);
+			this.tlpBotones.ResumeLayout(false);
 			this.pnlExtra.ResumeLayout(false);
 			this.pnlExtra.PerformLayout();
-			this.gbCamposTabla.ResumeLayout(false);
-			this.gbCamposTabla.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
+		private System.Windows.Forms.GroupBox gbElementos;
+		private System.Windows.Forms.ListBox lsbElementos;
 		private System.Windows.Forms.TableLayoutPanel tlpBotones;
 		private System.Windows.Forms.Button btnContiene;
 		private System.Windows.Forms.Button btnInsertar;
@@ -348,18 +293,11 @@ namespace LinkedList {
 		private System.Windows.Forms.Button btnContieneValor;
 		private System.Windows.Forms.Button btnQuitar;
 		private System.Windows.Forms.Button btnBuscar;
-		private System.Windows.Forms.GroupBox gbElementos;
-		private System.Windows.Forms.ListBox lsbElementos;
 		private System.Windows.Forms.Panel pnlExtra;
 		private System.Windows.Forms.Label lblCoberturaCapacidad;
-		private System.Windows.Forms.ProgressBar pgbCoberturaCapacidad;
-		private System.Windows.Forms.TextBox tbCobertura;
 		private System.Windows.Forms.Label lblDivisorCantidadCapacidad;
+		private System.Windows.Forms.ProgressBar pgbCantidadCapacidad;
 		private System.Windows.Forms.TextBox tbCapacidad;
-		private System.Windows.Forms.Label lblCoberturaMáxima;
-		private System.Windows.Forms.ProgressBar pgbCoberturaMáxima;
-		private System.Windows.Forms.GroupBox gbCamposTabla;
-		private System.Windows.Forms.Label lblCantidad;
 		private System.Windows.Forms.TextBox tbCantidad;
 	}
 }

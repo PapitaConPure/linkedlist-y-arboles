@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formularios\Demostraciones\FDiccionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Demostraciones\FDiccionario.Designer.cs">
+      <DependentUpon>FDiccionario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\General\FEntrada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     <Compile Include="Rendimiento\Tester.cs" />
     <EmbeddedResource Include="Formularios\Demostraciones\FCola.resx">
       <DependentUpon>FCola.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Demostraciones\FDiccionario.resx">
+      <DependentUpon>FDiccionario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Demostraciones\FPila.resx">
       <DependentUpon>FPila.cs</DependentUpon>

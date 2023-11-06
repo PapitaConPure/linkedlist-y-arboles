@@ -96,7 +96,9 @@ namespace LinkedList {
 		}
 
 		private void BtnDiccionario_Click(object sender, EventArgs e) {
-			MessageBox.Show("No implementado", "", MessageBoxButtons.OK, MessageBoxIcon.Question);
+			FDiccionario fDiccionario = new FDiccionario(this.sistema.Diccionario);
+			fDiccionario.ShowDialog();
+			fDiccionario.Dispose();
 		}
 		#endregion
 
