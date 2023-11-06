@@ -27,7 +27,7 @@ namespace Estructuras.Genéricas {
 		/// </summary>
 		/// <param name="clave">Clave del valor</param>
 		/// <param name="valor">Valor a insertar</param>
-		/// <returns><see langword="true"/> si el valor se pudo agregar, <see langword="false"/> de lo contrario</returns>
+		/// <returns><see langword="true"/> si se agregó una nueva entrada, <see langword="false"/> de lo contrario</returns>
 		/// <exception cref="ArgumentNullException"></exception>
 		bool Insertar(TClave clave, TValor valor);
 

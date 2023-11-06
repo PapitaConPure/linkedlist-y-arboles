@@ -27,7 +27,6 @@ namespace Estructuras.Genéricas {
 		/// Copia todos los elementos de la colección en un nuevo vector
 		/// </summary>
 		/// <returns>Un nuevo vector con los elementos de esta colección</returns>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		T[] AVector();
 
 		/// <summary>
@@ -36,7 +35,6 @@ namespace Estructuras.Genéricas {
 		/// <param name="destino">El vector al cual copiar los elementos de la colección</param>
 		/// <param name="índiceInicio">La posición basada en 0 del primer elemento de la colección a copiar</param>
 		/// <param name="cantidad">Cantidad de elementos a copiar de la colección</param>
-		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		/// <exception cref="ArgumentException"></exception>
 		void CopiarEn(T[] destino);
 	}
