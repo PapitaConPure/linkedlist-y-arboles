@@ -97,11 +97,10 @@ namespace Estructuras.Genéricas {
 		public void Agregar(T valor) {
 			if(this.Vacío) {
 				this.raíz = new NodoÁrbolBinario<T>(valor);
+				this.Cantidad++;
 			} else {
 				this.AgregarNodo(this.raíz, valor);
 			}
-
-			this.Cantidad++;
 		}
 
 		/// <summary>
@@ -124,7 +123,7 @@ namespace Estructuras.Genéricas {
 
 			this.raíz = resultado;
 			this.Cantidad--;
-			return resultado is NodoÁrbolBinario<T>;
+			return !(resultado is null);
 		}
 
 		/// <summary>
@@ -268,15 +267,20 @@ namespace Estructuras.Genéricas {
 		private void AgregarNodo(NodoÁrbolBinario<T> nodo, T valor) {
 			int comparación = valor.CompareTo(nodo.Valor);
 
+			if(comparación is 0)
+				return;
+
 			if(comparación < 0) {
-				if(nodo.Izquierdo is null)
+				if(nodo.Izquierdo is null) {
 					nodo.Izquierdo = new NodoÁrbolBinario<T>(valor);
-				else
+					this.Cantidad++;
+				} else
 					this.AgregarNodo(nodo.Izquierdo, valor);
 			} else {
-				if(nodo.Derecho is null)
+				if(nodo.Derecho is null) {
 					nodo.Derecho = new NodoÁrbolBinario<T>(valor);
-				else
+					this.Cantidad++;
+				} else
 					this.AgregarNodo(nodo.Derecho, valor);
 			}
 		}
@@ -327,7 +331,7 @@ namespace Estructuras.Genéricas {
 		/// <param name="nodo"><see cref="NodoÁrbolBinario{T}"/> desde el cuál buscar</param>
 		/// <returns>El menor valor encontrado</returns>
 		private T CalcularMenorValor(NodoÁrbolBinario<T> nodo) {
-			while(nodo.Izquierdo is NodoÁrbolBinario<T>)
+			while(!(nodo.Izquierdo is null))
 				nodo = nodo.Izquierdo;
 
 			return nodo.Valor;
