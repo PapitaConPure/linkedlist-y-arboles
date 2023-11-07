@@ -171,12 +171,12 @@ namespace Estructuras.Genéricas {
 				throw new ArgumentNullException("La clave fue null");
 
 			int idx = this.Hashear(clave);
-			NodoTablaHash<TClave, TValor> anterior = null;
 			NodoTablaHash<TClave, TValor> nodo = this.tabla[idx];
 
 			if(nodo is null)
 				return false;
 
+			NodoTablaHash<TClave, TValor> anterior = null;
 			NodoTablaHash<TClave, TValor> aQuitar = null;
 			while(aQuitar is null && nodo is object) {
 				if(nodo.Clave.Equals(clave))
@@ -211,7 +211,7 @@ namespace Estructuras.Genéricas {
 				return false;
 
 			bool encontró = false;
-			while(!encontró && nodo is object) {
+			while(!(encontró || nodo is null)) {
 				if(nodo.Clave.Equals(clave)) {
 					encontró = true;
 					encontrado = nodo.Valor;
@@ -387,7 +387,7 @@ namespace Estructuras.Genéricas {
 
 			foreach(NodoTablaHash<TClave, TValor> nodo in aux) {
 				NodoTablaHash<TClave, TValor> n = nodo;
-				while(n is object) {
+				while(!(n is null)) {
 					this.Insertar(n.Clave, n.Valor);
 					n = n.Siguiente;
 				}
@@ -403,8 +403,8 @@ namespace Estructuras.Genéricas {
 		/// <returns>El índice de tabla calculado para la clave ingresada</returns>
 		private int Hashear(TClave clave) {
 			int código = clave.GetHashCode();
-			int idx = Math.Abs(código % this.Capacidad);
-			return idx;
+			int idx = código % this.Capacidad;
+			return (idx + (idx >> 31)) ^ (idx >> 31); //Cosa horrible con bits para valor absoluto
 		}
 	}
 }
