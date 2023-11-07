@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Rendimiento {
 	class Program {
-		private static Random random = new Random();
+		private static Random random = new Random(0);
 		private static Stopwatch stopwatch = new Stopwatch();
 		private static string[] nombres;
 
@@ -19,8 +19,8 @@ namespace Rendimiento {
 		private static Pila<string> pila = new Pila<string>();
 		private static Cola<string> cola = new Cola<string>();
 		private static ÁrbolBinario<string> árbol = new ÁrbolBinario<string>();
-		private static TablaHash<string, double> tabla = new TablaHash<string, double>();
-		private static Diccionario<string, double> diccionario = new Diccionario<string, double>();
+		private static TablaHash<string, double> tabla = new TablaHash<string, double>(256, 0.92, 1.75);
+		private static Diccionario<string, double> diccionario = new Diccionario<string, double>(131_072);
 
 		static void Main(string[] args) {
 			if(!Inicializar()) {
@@ -93,9 +93,9 @@ namespace Rendimiento {
 			ProbarÁrbolBinario(50_000);
 			ProbarÁrbolBinario(100_000);
 			ProbarÁrbolBinario(500_000);
-			//ProbarÁrbolBinario(1_000_000);
-			//ProbarÁrbolBinario(5_000_000);
-			//ProbarÁrbolBinario(10_000_000);
+			ProbarÁrbolBinario(1_000_000);
+			ProbarÁrbolBinario(5_000_000);
+			ProbarÁrbolBinario(10_000_000);
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
 
