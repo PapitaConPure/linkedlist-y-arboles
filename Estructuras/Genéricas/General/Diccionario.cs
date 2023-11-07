@@ -7,6 +7,10 @@ namespace Estructuras.Genéricas {
 		private readonly int capacidadInicial;
 		private ParOrdenado<TClave, TValor>[] entradas;
 
+		public bool Vacío {
+			get { return this.Cantidad == 0; }
+		}
+
 		public int Cantidad { get; private set; }
 
 		public int Capacidad {
@@ -195,7 +199,7 @@ namespace Estructuras.Genéricas {
 		private void RedimensionarAbajo() {
 			int mitad = this.Capacidad / 2;
 
-			if(this.Cantidad > mitad)
+			if(this.Cantidad > mitad || mitad < 1)
 				return;
 
 			this.Redimensionar(mitad);

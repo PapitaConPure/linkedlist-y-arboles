@@ -5,7 +5,7 @@ namespace Estructuras.Genéricas {
 	/// Define métodos para manipular listas genéricas
 	/// </summary>
 	/// <typeparam name="T">El tipo de elemento contenido por la lista</typeparam>
-	interface ILista<T> {
+	public interface ILista<T>: IColección<T> {
 		/// <summary>
 		/// Obtiene un valor de la lista por índice
 		/// </summary>

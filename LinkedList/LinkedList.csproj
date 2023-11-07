@@ -153,7 +153,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Estructuras\Estructuras.csproj">
       <Project>{4E21A046-4BF2-4D5C-87EC-828C805CE71C}</Project>

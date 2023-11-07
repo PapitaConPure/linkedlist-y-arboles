@@ -9,6 +9,10 @@ namespace Estructuras.Genéricas {
 		private readonly double factorCrecimiento;
 		private readonly int capacidadInicial;
 
+		public bool Vacía {
+			get { return this.Cantidad == 0; }
+		}
+
 		public int Cantidad { get; private set; }
 
 		/// <summary>
