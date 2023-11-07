@@ -7,19 +7,9 @@ using System.Threading.Tasks;
 namespace Estructuras.Genéricas {
 	[Serializable]
 	public class NodoÁrbolBinario<T> where T: IComparable, IComparable<T> {
-		public NodoÁrbolBinario(T valor, NodoÁrbolBinario<T> nodo1, NodoÁrbolBinario<T> nodo2) {
+		public NodoÁrbolBinario(T valor) {
 			this.Valor = valor;
-
-			if(nodo1 is object)
-				this.Apendar(nodo1);
-
-			if(nodo2 is object)
-				this.Apendar(nodo2);
 		}
-
-		public NodoÁrbolBinario(T valor, NodoÁrbolBinario<T> nodo): this(valor, nodo, null) {}
-
-		public NodoÁrbolBinario(T valor): this(valor, null) {}
 
 		public T Valor { get; set; }
 
