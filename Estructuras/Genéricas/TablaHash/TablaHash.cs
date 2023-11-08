@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Estructuras.Genéricas {
 	[Serializable]
-	public class TablaHash<TClave, TValor>: IDiccionario<TClave, TValor> {
+	public class TablaHash<TClave, TValor>: IDiccionario<TClave, TValor> where TClave: IEquatable<TClave> {
 		private NodoTablaHash<TClave, TValor>[] tabla;
 		private readonly double coberturaMáxima;
 		private readonly double factorCrecimiento;
@@ -104,6 +104,9 @@ namespace Estructuras.Genéricas {
 			if(factorCrecimiento < 1.2 || factorCrecimiento > 4)
 				throw new ArgumentOutOfRangeException("El factor de crecimiento debe ser un valor entre 1.2 y 4.0 inclusive");
 
+			if(capacidad % 2 != 0)
+				capacidad++;
+
 			this.tabla = new NodoTablaHash<TClave, TValor>[capacidad];
 			this.capacidadInicial = this.Capacidad;
 			this.Cantidad = 0;
@@ -137,10 +140,10 @@ namespace Estructuras.Genéricas {
 		public TablaHash(): this(12) {}
 
 		public bool Insertar(TClave clave, TValor valor) {
-			if(Genérico.EsNulo(clave))
+			if(clave == null)
 				throw new ArgumentNullException("La clave fue null");
 
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				throw new ArgumentNullException("El valor fue null");
 
 			int idx = this.Hashear(clave);
@@ -153,7 +156,7 @@ namespace Estructuras.Genéricas {
 				return true;
 			}
 
-			while(!nodo.Clave.Equals(clave) && nodo.Siguiente is object)
+			while(!(nodo.Siguiente is null || nodo.Clave.Equals(clave)))
 				nodo = nodo.Siguiente;
 
 			if(nodo.Clave.Equals(clave)) {
@@ -167,7 +170,7 @@ namespace Estructuras.Genéricas {
 		}
 
 		public bool Quitar(TClave clave) {
-			if(Genérico.EsNulo(clave))
+			if(clave == null)
 				throw new ArgumentNullException("La clave fue null");
 
 			int idx = this.Hashear(clave);
@@ -178,7 +181,7 @@ namespace Estructuras.Genéricas {
 
 			NodoTablaHash<TClave, TValor> anterior = null;
 			NodoTablaHash<TClave, TValor> aQuitar = null;
-			while(aQuitar is null && nodo is object) {
+			while(aQuitar is null && !(nodo is null)) {
 				if(nodo.Clave.Equals(clave))
 					aQuitar = nodo;
 				else {
@@ -200,7 +203,7 @@ namespace Estructuras.Genéricas {
 		}
 
 		public bool Buscar(TClave clave, out TValor encontrado) {
-			if(Genérico.EsNulo(clave))
+			if(clave == null)
 				throw new ArgumentNullException("La clave fue null");
 
 			int idx = this.Hashear(clave);
@@ -223,7 +226,7 @@ namespace Estructuras.Genéricas {
 		}
 
 		public TValor Encontrar(TClave clave) {
-			if(Genérico.EsNulo(clave))
+			if(clave == null)
 				throw new ArgumentNullException("La clave fue null");
 
 			int idx = this.Hashear(clave);
@@ -233,7 +236,7 @@ namespace Estructuras.Genéricas {
 				throw new KeyNotFoundException("La clave solicitada no existe");
 
 			NodoTablaHash<TClave, TValor> encontrado = null;
-			while(encontrado is null && nodo is object) {
+			while(encontrado is null && !(nodo is null)) {
 				if(nodo.Clave.Equals(clave))
 					encontrado = nodo;
 				else
@@ -255,7 +258,7 @@ namespace Estructuras.Genéricas {
 
 			bool encontrado = false;
 
-			while(!encontrado && nodo is object) {
+			while(!(encontrado || nodo is null)) {
 				if(nodo.Clave.Equals(parOrdenado.Clave) && nodo.Valor.Equals(parOrdenado.Valor))
 					encontrado = true;
 				else
@@ -274,7 +277,7 @@ namespace Estructuras.Genéricas {
 
 			bool encontrado = false;
 
-			while(!encontrado && nodo is object) {
+			while(!(encontrado || nodo is null)) {
 				if(nodo.Clave.Equals(clave))
 					encontrado = true;
 				else
@@ -296,7 +299,7 @@ namespace Estructuras.Genéricas {
 			for(int i = 0; !encontrado && i < this.Capacidad; i++) {
 				nodo = this.tabla[i];
 
-				while(!encontrado && nodo is object) {
+				while(!(encontrado || nodo is null)) {
 					if(nodo.Valor.Equals(valor))
 						encontrado = true;
 					else
@@ -356,6 +359,9 @@ namespace Estructuras.Genéricas {
 			if(nuevaCapacidad < 2)
 				return;
 
+			if(nuevaCapacidad % 2 != 0)
+				nuevaCapacidad++;
+
 			//Reconstruir tabla con nuevo tamaño
 			NodoTablaHash<TClave, TValor>[] aux = this.tabla;
 			this.tabla = new NodoTablaHash<TClave, TValor>[nuevaCapacidad];
@@ -379,6 +385,9 @@ namespace Estructuras.Genéricas {
 				return;
 
 			int nuevaCapacidad = (int)Math.Ceiling(this.Capacidad * this.factorCrecimiento);
+
+			if(nuevaCapacidad % 2 != 0)
+				nuevaCapacidad++;
 
 			//Reconstruir tabla con nuevo tamaño
 			NodoTablaHash<TClave, TValor>[] aux = this.tabla;

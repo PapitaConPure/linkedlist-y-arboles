@@ -45,7 +45,6 @@
     <Compile Include="Genéricas\General\Cola.cs" />
     <Compile Include="Genéricas\General\Pila.cs" />
     <Compile Include="Genéricas\Interfaces\IColección.cs" />
-    <Compile Include="Genéricas\Genérico.cs" />
     <Compile Include="Genéricas\Interfaces\IDiccionario.cs" />
     <Compile Include="Genéricas\Interfaces\ILista.cs" />
     <Compile Include="Genéricas\Lista Ligada\ListaDoblementeLigada\ListaDoblementeLigada.cs" />

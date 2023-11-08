@@ -5,7 +5,8 @@ namespace Estructuras.Genéricas {
 	[Serializable]
 	public class Diccionario<TClave, TValor>: IDiccionario<TClave, TValor> {
 		private readonly int capacidadInicial;
-		private ParOrdenado<TClave, TValor>[] entradas;
+		private TClave[] claves;
+		private TValor[] valores;
 
 		public bool Vacío {
 			get { return this.Cantidad == 0; }
@@ -14,7 +15,7 @@ namespace Estructuras.Genéricas {
 		public int Cantidad { get; private set; }
 
 		public int Capacidad {
-			get { return this.entradas.Length; }
+			get { return this.claves.Length; }
 		}
 
 		public TClave[] Claves {
@@ -23,9 +24,9 @@ namespace Estructuras.Genéricas {
 				TClave[] claves = new TClave[cnt];
 
 				for(int i = 0; i < cnt; i++)
-					claves[i] = this.entradas[i].Clave;
+					claves[i] = this.claves[i];
 
-				return claves;
+				return this.claves;
 			}
 		}
 
@@ -35,7 +36,7 @@ namespace Estructuras.Genéricas {
 				TValor[] valores = new TValor[cnt];
 
 				for(int i = 0; i < cnt; i++)
-					valores[i] = this.entradas[i].Valor;
+					valores[i] = this.valores[i];
 
 				return valores;
 			}
@@ -51,77 +52,77 @@ namespace Estructuras.Genéricas {
 		}
 
 		public Diccionario(int capacidad) {
-			this.entradas = new ParOrdenado<TClave, TValor>[capacidad];
+			this.claves = new TClave[capacidad];
+			this.valores = new TValor[capacidad];
 			this.capacidadInicial = capacidad;
 		}
 
 		public Diccionario(): this(2) {}
 
 		public bool Insertar(TClave clave, TValor valor) {
-			if(Genérico.EsNulo(clave))
+			if(clave == null)
 				throw new ArgumentNullException("La clave fue null");
 
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				throw new ArgumentNullException("El valor fue null");
 
-			int idx = this.BuscarEntrada(clave, out _);
+			int idx = this.BuscarEntrada(clave);
 
 			if(idx >= 0) {
-				this.entradas[idx] = new ParOrdenado<TClave, TValor>(clave, valor);
+				this.valores[idx] = valor;
 				return false;
 			}
 
 			this.RedimensionarArriba();
-			this.entradas[this.Cantidad++] = new ParOrdenado<TClave, TValor>(clave, valor);
+			this.claves[this.Cantidad] = clave;
+			this.valores[this.Cantidad++] = valor;
 			return true;
 		}
 
 		public bool Buscar(TClave clave, out TValor encontrado) {
-			if(Genérico.EsNulo(clave))
+			if(clave == null)
 				throw new ArgumentNullException("La clave fue null");
 
-			ParOrdenado<TClave, TValor> existente;
-			int idx = this.BuscarEntrada(clave, out existente);
+			int idx = this.BuscarEntrada(clave);
 
 			if(idx < 0) {
 				encontrado = default;
 				return false;
 			}
 
-			encontrado = existente.Valor;
+			encontrado = this.valores[idx];
 			return true;
 		}
 
 		public TValor Encontrar(TClave clave) {
-			if(Genérico.EsNulo(clave))
+			if(clave == null)
 				throw new ArgumentNullException("La clave fue null");
 
-			ParOrdenado<TClave, TValor> existente;
-			this.BuscarEntrada(clave, out existente);
+			int idx = this.BuscarEntrada(clave);
 
-			if(existente is null)
+			if(idx < 0)
 				throw new KeyNotFoundException("La clave solicitada no existe");
 
-			return existente.Valor;
+			return this.valores[idx];
 		}
 
 		public bool Quitar(TClave clave) {
-			if(Genérico.EsNulo(clave))
+			if(clave == null)
 				throw new ArgumentNullException("La clave fue null");
 
-			int idx = this.BuscarEntrada(clave, out _);
+			int idx = this.BuscarEntrada(clave);
 
 			if(idx < 0)
 				return false;
 
-			this.entradas[idx] = this.entradas[--this.Cantidad];
-			this.entradas[this.Cantidad] = null;
+			this.claves[idx] = this.claves[--this.Cantidad];
+			this.valores[idx] = this.valores[this.Cantidad];
 			this.RedimensionarAbajo();
 			return true;
 		}
 
 		public bool ContieneClave(TClave clave) {
-			return this.BuscarEntrada(clave, out _) >= 0;
+			return this.BuscarEntrada(clave) >= 0;
 		}
 
 		/// <summary>
@@ -130,12 +131,15 @@ namespace Estructuras.Genéricas {
 		/// <param name="valor">Valor a buscar</param>
 		/// <returns><see langword="true"/> si se encontró, o <see langword="false"/> de lo contrario</returns>
 		public bool ContieneValor(TValor valor) {
+			if(valor == null)
+				return false;
+
 			bool contiene = false;
 			int idx = 0;
 			int cnt = this.Cantidad;
 
 			while(!contiene && idx < cnt) {
-				contiene = this.entradas[idx].Valor.Equals(valor);
+				contiene = this.valores[idx].Equals(valor);
 				idx++;
 			}
 
@@ -148,8 +152,8 @@ namespace Estructuras.Genéricas {
 			int cnt = this.Cantidad;
 
 			while(!contiene && idx < cnt) {
-				contiene = this.entradas[idx].Clave.Equals(entrada.Clave)
-					    && this.entradas[idx].Valor.Equals(entrada.Valor);
+				contiene = this.claves[idx].Equals(entrada.Clave)
+					    && this.valores[idx].Equals(entrada.Valor);
 
 				idx++;
 			}
@@ -158,7 +162,8 @@ namespace Estructuras.Genéricas {
 		}
 
 		public void Limpiar() {
-			this.entradas = new ParOrdenado<TClave, TValor>[this.capacidadInicial];
+			this.claves = new TClave[this.capacidadInicial];
+			this.valores = new TValor[this.capacidadInicial];
 			this.Cantidad = 0;
 		}
 
@@ -169,7 +174,7 @@ namespace Estructuras.Genéricas {
 			ParOrdenado<TClave, TValor>[] entradas = new ParOrdenado<TClave, TValor>[cnt];
 
 			for(int i = 0; i < cnt; i++)
-				entradas[i] = this.entradas[i];
+				entradas[i] = new ParOrdenado<TClave, TValor>(this.claves[i], this.valores[i]);
 
 			return entradas;
 		}
@@ -179,7 +184,7 @@ namespace Estructuras.Genéricas {
 		public void CopiarEn(ParOrdenado<TClave, TValor>[] destino) {
 			int cnt = this.Cantidad;
 			for(int i = 0; i < cnt; i++)
-				destino[i] = this.entradas[i];
+				destino[i] = new ParOrdenado<TClave, TValor>(this.claves[i], this.valores[i]);
 		}
 
 		public void MinimizarTamaño() {
@@ -206,31 +211,30 @@ namespace Estructuras.Genéricas {
 		}
 
 		private void Redimensionar(int nuevaCapacidad) {
-			ParOrdenado<TClave, TValor>[] nuevoVec = new ParOrdenado<TClave, TValor>[nuevaCapacidad];
+			TClave[] dClaves = new TClave[nuevaCapacidad];
+			TValor[] dValores = new TValor[nuevaCapacidad];
 
-			for(int i = 0; i < this.Cantidad; i++)
-				nuevoVec[i] = this.entradas[i];
+			for(int i = 0; i < this.Cantidad; i++) {
+				dClaves[i] = this.claves[i];
+				dValores[i] = this.valores[i];
+			}
 
-			this.entradas = nuevoVec;
+			this.claves = dClaves;
+			this.valores = dValores;
 		}
 
-		private int BuscarEntrada(TClave clave, out ParOrdenado<TClave, TValor> encontrado) {
-			encontrado = null;
-
+		private int BuscarEntrada(TClave clave) {
 			int idx = 0;
 			int cnt = this.Cantidad;
 
-			while(encontrado is null && idx < cnt) {
-				if(this.entradas[idx].Clave.Equals(clave))
-					encontrado = this.entradas[idx];
+			while(idx < cnt) {
+				if(this.claves[idx].Equals(clave))
+					return idx;
 				else
 					idx++;
 			}
 
-			if(encontrado is null)
-				return -1;
-
-			return idx;
+			return -1;
 		}
 	}
 }

@@ -111,7 +111,7 @@ namespace Estructuras.Genéricas {
 		/// <param name="valor">Valor a buscar</param>
 		/// <returns><see langword="true"/> si se encontró, o <see langword="false"/> de lo contrario</returns>
 		public bool Contiene(T valor) {
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				return false;
 
 			return this.BuscarNodoPorValor(valor, out _) is object;
@@ -123,7 +123,7 @@ namespace Estructuras.Genéricas {
 		/// <param name="valor">Valor a insertar</param>
 		/// <returns>La posición en la que se insertó el nuevo elemento, ó -1 si no se insertó nada</returns>
 		public virtual int AgregarPrimero(T valor) {
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				return -1;
 
 			NodoListaLigada<T> nuevo = new NodoListaLigada<T>(valor, this.cabeza);
@@ -142,7 +142,7 @@ namespace Estructuras.Genéricas {
 		/// <param name="valor">Valor a insertar</param>
 		/// <returns>La posición en la que se insertó el nuevo elemento, ó -1 si no se insertó nada</returns>
 		public virtual int Agregar(T valor) {
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				return -1;
 
 			NodoListaLigada<T> nuevo = new NodoListaLigada<T>(valor);
@@ -166,7 +166,7 @@ namespace Estructuras.Genéricas {
 		/// <param name="valor">Valor a insertar</param>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		public virtual void Insertar(int índice, T valor) {
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				return;
 
 			if(índice == this.Cantidad) {
@@ -288,7 +288,7 @@ namespace Estructuras.Genéricas {
 		/// <param name="valor">Valor a buscar</param>
 		/// <returns>El índice de la primera instancia encontrada, ó -1 si no se encuentra una</returns>
 		public int ÍndiceDe(T valor) {
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				return -1;
 
 			int idx;

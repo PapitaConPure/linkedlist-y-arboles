@@ -7,16 +7,15 @@ namespace Estructuras.Genéricas {
 	/// <typeparam name="TClave">Tipo de clave de la entrada</typeparam>
 	/// <typeparam name="TValor">Tivo de valor de la entrada</typeparam>
 	[Serializable]
-	public class NodoTablaHash<TClave, TValor> {
+	public class NodoTablaHash<TClave, TValor> where TClave: IEquatable<TClave> {
 		/// <summary>
-		/// Devuelve la clave de este <see cref="NodoTablaHash{TClave, TValor}"/>
+		/// Obtiene la clave de este <see cref="NodoTablaHash{TClave, TValor}"/>
 		/// </summary>
-		public TClave Clave { get; }
-
+		public readonly TClave Clave;
 		/// <summary>
-		/// Devuelve y establece el valor de este <see cref="NodoTablaHash{TClave, TValor}"/>
+		/// Obtiene y establece el valor de este <see cref="NodoTablaHash{TClave, TValor}"/>
 		/// </summary>
-		public TValor Valor { get; set; }
+		public TValor Valor;
 
 		/// <summary>
 		/// Indica el <see cref="NodoTablaHash{TClave, TValor}"/> posterior a este

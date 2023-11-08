@@ -19,7 +19,7 @@ namespace Estructuras.Genéricas {
 		public ListaDoblementeLigada(): base() {}
 
 		public override int AgregarPrimero(T valor) {
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				return -1;
 
 			NodoListaLigada<T> nuevo = new NodoListaDoblementeLigada<T>(valor, this.cabeza);
@@ -36,7 +36,7 @@ namespace Estructuras.Genéricas {
 
 		/// <inheritdoc cref="ListaLigada{T}.Agregar(object)"/>
 		public override int Agregar(T valor) {
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				return -1;
 
 			NodoListaDoblementeLigada<T> nuevo = new NodoListaDoblementeLigada<T>(valor, this.cola, null);
@@ -55,7 +55,7 @@ namespace Estructuras.Genéricas {
 
 		/// <inheritdoc cref="ListaLigada{T}.Insertar(int, T)"/>
 		public override void Insertar(int índice, T valor) {
-			if(Genérico.EsNulo(valor))
+			if(valor == null)
 				return;
 
 			if(índice == this.Cantidad) {
