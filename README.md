@@ -11,15 +11,15 @@ Se sostienen las interfaces [`IColección`](/Estructuras/No%20Genéricas/IColecc
   * `Contiene(object valor): bool`
   * `Limpiar()`
   * `AVector(): object[]`
-  * `CopiarEn(object[] destino, int índiceInicio = -1, int cantidad = -1)`
+  * `CopiarEn(destino: object[], [índiceInicio: int = -1], [cantidad: int = -1])`
 * `ILista`
   * `this[idx: int]: object`
-  * `Agregar(object valor): int`
-  * `Insertar(int idx, object valor)`
-  * `Quitar(object valor): int`
-  * `QuitarEn(int idx): object`
-  * `ValorEn(int idx): object`
-  * `ÍndiceDe(object valor): int`
+  * `Agregar(valor: object): int`
+  * `Insertar(idx: int, valor: object)`
+  * `Quitar(valor: object): int`
+  * `QuitarEn(idx: int): object`
+  * `ValorEn(idx: int): object`
+  * `ÍndiceDe(valor: object): int`
 
 ### Lista Ligada
 Es una lista que consiste de objetos nodos que tienen cada uno la referencia al siguiente nodo de la lista (están "ligados"). Solo se puede recorrer de forma secuencial hacia delante.
@@ -108,18 +108,18 @@ Todas las anteriores estructuras (y más) se implementaron también de forma gen
 Se incluyen las mismas del capítulo no genérico pero con implementación genérica
 * `IColección<T>`
   * `Cantidad: get int`
-  * `Contiene(T valor): bool`
+  * `Contiene(valor: T): bool`
   * `Limpiar()`
   * `AVector(): T[]`
-  * `CopiarEn(T[] destino, int índiceInicio = -1, int cantidad = -1)`
+  * `CopiarEn(destino: T[])`
 * `ILista<T>`
   * `this[idx: int]: T`
-  * `Agregar(T valor): int`
-  * `Insertar(int idx, T valor)`
-  * `Quitar(T valor): int`
-  * `QuitarEn(int idx): T`
-  * `ValorEn(int idx): T`
-  * `ÍndiceDe(T valor): int`
+  * `Agregar(valor: T): int`
+  * `Insertar(idx: int, valor: T)`
+  * `Quitar(valor: T): int`
+  * `QuitarEn(idx: int): T`
+  * `ValorEn(idx: int): T`
+  * `ÍndiceDe(valor: T): int`
 
 Además, se incluye la interfaz de [`IDiccionario<TClave, TValor>`](/Estructuras/Genéricas/Interfaces/IDiccionario.cs), que en sí misma implementa la interfaz `IColección<ParOrdenado<TClave, TValor>>`
 * [`IColección<T>`](/Estructuras/Genéricas/Interfaces/IColección.cs)
@@ -128,9 +128,11 @@ Además, se incluye la interfaz de [`IDiccionario<TClave, TValor>`](/Estructuras
   * `Claves: get TClave[]`
   * `Valores: get TValor[]`
   * `this[clave: TClave]: TValor`
-  * `Agregar(): bool`
-  * `Quitar(): bool`
-  * `ContieneClave(): bool`
+  * `Insertar(clave: TClave, valor: TValor): bool`
+  * `Buscar(clave: TClave, resultado: out TValor): bool`
+  * `Encontrar(clave: TClave): TValor`
+  * `Quitar(clave: TClave): bool`
+  * `ContieneClave(clave: TClave): bool`
 
 ### Implementaciones de Contrapartes No Genéricas
 * Listas Ligadas
@@ -147,4 +149,43 @@ Además, se incluye la interfaz de [`IDiccionario<TClave, TValor>`](/Estructuras
   * [`NodoÁrbolBinario<T>`](/Estructuras/Genéricas/Árbol%20Binario/NodoÁrbolBinario.cs)
 
  ### Tabla de Hash
+Originalmente, una tabla de hashes es una colección de pares clave-valor en la cual se sostiene un arreglo de X tamaño y a los pares que ingresan se les "hashea" la clave para convertirla en un entero que luego se mapea a un índice válido en el arreglo, en el cual se almacenará el valor.
+
+**Modo de uso**
+```cs
+TablaHash<string, int> tabla = new TablaHash<string, int>(512);
+tabla.Insertar("perro", 7);
+tabla.Insertar("gato", 2);
+tabla.Insertar("conejo", 5);
+
+//...
+
+int v1, v2, v3;
+tabla.Buscar("perro", out v1);
+MessageBox.Show($"Valor 1 = {v1}");
+
+if(tabla.Buscar("gato", out v2)) {
+	MessageBox.Show($"Valor 2 = {v2}");
+}
+
+if(tabla.Contiene("conejo")) {
+	v3 = tabla.Encontrar("conejo"); //Arroja un error si la clave no existe
+	MessageBox.Show($"Valor 3 = {v3}");
+}
+
+//Valor 1 = 7 | Valor 2 = 2 | Valor 3 = 5 | Elementos: 3
+MessageBox.Show($"Valor 1 = {v1} | Valor 2 = {v2} | Valor 3 = {v3} | Elementos: {tabla.Cantidad}");
+```
+
+Esto surge sino con la necesidad de lidiar con "colisiones", que es cuando inevitablemente 2 ó más claves tengan el mismo resultado de hashing. La forma más común de tratar las colisiones es, en lugar de guardar los valores directamente en cada índice, guardar listas ligadas de pares clave-valor en cada índice. Esto introduce una peor complejidad de tiempo lineal, pero sigue teniendo una complejidad promedio constante.
+
+En esta implementación se creó la clase [`TablaHash`](/Estructuras/Genéricas/General/TablaHash.cs) y, con el objetivo de balancear el indizado, se le da al vector interno de la clase la posibilidad de redimensionarse.
+
+Para el redimensionado se tienen en cuenta 4 variables:
+* **Capacidad:** no confundir con la Cantidad de elementos que contiene la colección - representa la cantidad de índices, libres o no, que hay a disposición.
+* **Cobertura:** representa el porcentaje de índices ocupados en relación a la capacidad actual. Siempre es un valor entre 0 y 1
+* **Cobertura máxima:** se define al construir un objeto de tabla e indica ael porcentaje de cobertura en el que se realizará una redimensión. Por ende, también es un valor hasta 1 (aunque el rango inferior es mayor)
+* **Factor de redimensión:** se define al construir un objeto de tabla y define cuántas veces crecerá la capacidad al redimensionar el arreglo. Dada la naturaleza de la multiplicación, se decide un factor mínimo de 1.2
+
+### Diccionario
 > Documentación pendiente...
