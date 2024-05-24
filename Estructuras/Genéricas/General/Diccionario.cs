@@ -230,8 +230,8 @@ namespace Estructuras.Genéricas {
 			while(idx < cnt) {
 				if(this.claves[idx].Equals(clave))
 					return idx;
-				else
-					idx++;
+
+				idx++;
 			}
 
 			return -1;

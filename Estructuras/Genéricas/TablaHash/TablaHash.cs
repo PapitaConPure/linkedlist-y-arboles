@@ -98,8 +98,8 @@ namespace Estructuras.Genéricas {
 			if(capacidad < 2)
 				throw new ArgumentOutOfRangeException("La capacidad debe ser al menos 2");
 
-			if(coberturaMáxima < 0.4 || coberturaMáxima >= 1)
-				throw new ArgumentOutOfRangeException("La cobertura máxima debe ser un valor entre 0.5 inclusive y 1.0 exclusive");
+			if(coberturaMáxima < 0.4 || coberturaMáxima > 1)
+				throw new ArgumentOutOfRangeException("La cobertura máxima debe ser un valor entre 0.4 y 1.0 inclusive");
 
 			if(factorCrecimiento < 1.2 || factorCrecimiento > 4)
 				throw new ArgumentOutOfRangeException("El factor de crecimiento debe ser un valor entre 1.2 y 4.0 inclusive");
